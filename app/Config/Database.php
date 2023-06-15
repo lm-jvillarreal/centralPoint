@@ -34,7 +34,7 @@ class Database extends Config
         'DSN'      => '',
         'hostname' => '74.208.211.84',
         'username' => 'mision',
-        'password' => 'ABC1238f37',
+        'password' => 'ABC1238f47',
         'database' => 'centralpoint',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
