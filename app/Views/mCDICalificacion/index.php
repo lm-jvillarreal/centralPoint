@@ -283,12 +283,12 @@
 						}
 					},
 				],
-				"ajax": {
-					type: "POST",
-					url: "departamento/listar",
-					dataSrc: "",
-					data: "",
-				},
+				// "ajax": {
+				// 	type: "POST",
+				// 	url: "departamento/listar",
+				// 	dataSrc: "",
+				// 	data: "",
+				// },
 				"columns": [{
 						"type": "html-num",
 						"data": "id"
