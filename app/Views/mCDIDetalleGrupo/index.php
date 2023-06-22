@@ -23,12 +23,12 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>Administración de Grupos</h1>
+							<h1>Administración de Detalles</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item"><a href="#">Administración y Seguridad</a></li>
-								<li class="breadcrumb-item active">Grupos</li>
+								<li class="breadcrumb-item active">Detalles de Grupos</li>
 							</ol>
 						</div>
 					</div>
@@ -42,7 +42,7 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">Catálogo de Grupos</h3>
+									<h3 class="card-title">Catálogo de Detalles Grupos</h3>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
@@ -50,10 +50,9 @@
 										<thead>
 											<tr>
 												<th width='5%'>#id</th>
-												<th width='10%'>#id_Plan</th>
-												<th width='10%'>#id_periodo.</th>
-												<th width='10%'>#Nivel.</th>
-												<th width='10%'>#id_docente.</th>
+												<th width='10%'>#id_grupo</th>
+												<th width='10%'>#id_alumno.</th>
+											
 												
 											</tr>
 										</thead>
@@ -82,23 +81,22 @@
 								<form action="" method="POST" id="frmNuevo">
 									<div class="row">
 										<div class="col-md-4">
-											<div class="form-group" id="id_Plan">
-												<label for="id_Plan" class="form-label">*#id_Plan:</label>
-												<input type="number" name="txt_id_plan" id="txt_id_plan" class="form-control">
+											<div class="form-group" id="id_grupo">
+												<label for="id_grupo" class="form-label">*#id_grupo:</label>
+												<input type="number" name="txt_id_grupo" id="txt_id_grupo" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
 										<div class="col-md-3">
-											<div class="form-group" id="id_peroido">
-												<label for="id_periodo" class="form-label">*#id_periodo:</label>
-												<input type="number" name="txt_id_periodo" id="txt_id_periodo" class="form-control">
+											<div class="form-group" id="id_alumno">
+												<label for="id_alumno" class="form-label">*#id_alumno:</label>
+												<input type="number" name="txt_id_alumno" id="txt_id_alumno" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
 										<div class="col-md-3">
-											<div class="form-group" id="Nivel">
-												<label for="Nivel" class="form-label">*#Nivel:</label>
-												<input type="number" name="txt_Nivel" id="txt_Nivel" class="form-control">
+											<div class="form-group" id="">
+
 												<input type="hidden" name="txt_fechahora" id="txt_fechahora" class="form-control">
 												<input type="hidden" name="txt_activo" id="txt_activo" class="form-control">
 												<input type="hidden" name="txt_usuario" id="txt_usuario" class="form-control">
@@ -106,13 +104,7 @@
 											</div>
 										</div>
 										
-										<div class="col-md-3">
-											<div class="form-group" id="id_docente">
-												<label for="id_docente" class="form-label">*#id_docente:</label>
-												<input type="number" name="txt_id_docente" id="txt_id_docente" class="form-control">
-												<div class="invalid-feedback"></div>
-											</div>
-										</div>
+										
 										
 										
 									
@@ -152,22 +144,18 @@
 		
 		$('#modalNuevo').on('hidden.bs.modal', function() {
 			$(this).find('frmNuevo').trigger('reset');
-			$("#id_Plan > div").html("");
-			$("#id_Plan > input").removeClass("is-invalid");
-			$("#id_peroido > div").html("");
-			$("#id_peroido > input").removeClass("is-invalid");
-			$("#Nivel > div").html("");
-			$("#Nivel > input").removeClass("is-invalid");
-			$("#id_docente > div").html("");
-			$("#id_docente > input").removeClass("is-invalid");
-			$("#txt_fechahora > div").html("");
-			$("#txt_fechahora > input").removeClass("is-invalid");
-			$("#txt_activo > div").html("");
-			$("#txt_activo > input").removeClass("is-invalid");
-			$("#txt_usuario > div").html("");
-			$("#txt_usuario > input").removeClass("is-invalid");
-
-			
+			$("#Docente > div").html("");
+			$("#Docente > input").removeClass("is-invalid");
+			$("#Materia > div").html("");
+			$("#Materia > input").removeClass("is-invalid");
+			$("#fecharegistro > div").html("");
+			$("#fecharegistro > select").removeClass("is-invalid");
+			$("#horaregistro > div").html("");
+			$("#horaregistro > select").removeClass("is-invalid");
+			$("#activo > div").html("");
+			$("#activo > select").removeClass("is-invalid");
+			$("#usuario > div").html("");
+			$("#usuario > select").removeClass("is-invalid");
 		})
 
 		function Tabla() {
@@ -233,17 +221,13 @@
 						"data": "id"
 					},
 					{
-						"data": "id_plan"
+						"data": "id_grupo"
 					},
 					{
-						"data": "id_periodo"
-					},
-					{
-						"data": "Nivel"
-					},
-					{
-						"data": "id_docente"
-					},
+						"data": "id_alumno"
+					}
+					
+					
 				]
 			});
 		}
@@ -257,23 +241,20 @@
 		});
 		$("#btnGuardar").click(function() {
 			$(this).find('frmNuevo').trigger('reset');
-			$("#id_Plan > div").html("");
-			$("#id_Plan > input").removeClass("is-invalid");
-			$("#id_periodo > div").html("");
-			$("#id_periodo > input").removeClass("is-invalid");
-			$("#Nivel > div").html("");
-			$("#Nivel > input").removeClass("is-invalid");
-			$("#id_docente > div").html("");
-			$("#id_docente > input").removeClass("is-invalid");
-			$("#txt_fechahora > div").html("");
-			$("#txt_fechahora > input").removeClass("is-invalid");
-			$("#txt_activo > div").html("");
-			$("#txt_activo > input").removeClass("is-invalid");
-			$("#txt_usuario > div").html("");
-			$("#txt_usuario > input").removeClass("is-invalid");
-			
+			$("#Docente > div").html("");
+			$("#Docente > input").removeClass("is-invalid");
+			$("#Materia > div").html("");
+			$("#Materia > input").removeClass("is-invalid");
+			$("#fecharegistro > div").html("");
+			$("#fecharegistro > select").removeClass("is-invalid");
+			$("#horaregistro > div").html("");
+			$("#horaregistro > select").removeClass("is-invalid");
+			$("#activo > div").html("");
+			$("#activo > select").removeClass("is-invalid");
+			$("#usuario > div").html("");
+			$("#usuario > select").removeClass("is-invalid");
 			$.ajax({
-				url: "detalle/insertar",
+				url: "aspirantes/insertar",
 				type: "POST",
 				data: $("#frmNuevo").serialize(),
 				success: function(response) {
@@ -289,33 +270,31 @@
 				statusCode: {
 					400: function(xhr) {
 						var resp = JSON.parse(xhr.responseText);
-						if (resp.id_Plan != "") {
-							$("#id_Plan > div").html(resp.id_Plan);
-							$("#id_Plan > input").addClass("is-invalid");
+						if (resp.Docente != "") {
+							$("#Docente > div").html(resp.Docente);
+							$("#Docente > input").addClass("is-invalid");
 						}
-						if (resp.id_peroido != "") {
-							$("#id_peroido > div").html(resp.id_peroido);
-							$("#id_peroido > input").addClass("is-invalid");
+						if (resp.Materia != "") {
+							$("#Materia > div").html(resp.Materia);
+							$("#Materia > input").addClass("is-invalid");
 						}
-						if (resp.Nivel != "") {
-							$("#Nivel > div").html(resp.Nivel);
-							$("#Nivel > select").addClass("is-invalid");
+						
+						
+						if (resp.fecharegistro != "") {
+							$("#fecharegistro > div").html(resp.fecharegistro);
+							$("#fecharegistro > select").addClass("is-invalid");
 						}
-						if (resp.id_docente != "") {
-							$("#id_docente > div").html(resp.id_docente);
-							$("#id_docente > select").addClass("is-invalid");
+						if (resp.horaregistro != "") {
+							$("#horaregistro > div").html(resp.horaregistro);
+							$("#horaregistro > select").addClass("is-invalid");
 						}
-						if (resp.txt_fechahora != "") {
-							$("#txt_fechahora > div").html(resp.txt_fechahora);
-							$("#txt_fechahora > select").addClass("is-invalid");
+						if (resp.activo != "") {
+							$("#activo > div").html(resp.activo);
+							$("#activo > select").addClass("is-invalid");
 						}
-						if (resp.txt_activo != "") {
-							$("#txt_activo > div").html(resp.txt_activo);
-							$("#txt_activo > select").addClass("is-invalid");
-						}
-						if (resp.txt_usuario != "") {
-							$("#txt_usuario > div").html(resp.txt_usuario);
-							$("#txt_usuario > select").addClass("is-invalid");
+						if (resp.usuario != "") {
+							$("#usuario > div").html(resp.usuario);
+							$("#usuario > select").addClass("is-invalid");
 						}
 					},
 					401: function(xhr) {
@@ -329,11 +308,10 @@
 			if (origen == 'nuevo') {
 				$("#btnEliminar").css('display', 'none');
 				$("#id").val("");
-				$("#txt_id_plan").val("");
-				$("#txt_id_periodo").val("");
-				$("#txt_Nivel").val("");
-				$("#txt_id_docente").val("");
-				$("#txt_fechahora").val("");
+				$("#txt_Docente").val("");
+				$("#txt_Materia").val("");
+				$("#txt_fecharegistro").val("");
+				$("#txt_horaregistro").val("");
 				$("#txt_activo").val("");
 				$("#txt_usuario").val("");
 				$("#modalNuevo").modal("show");
@@ -343,18 +321,16 @@
 					url: "departamento/campos",
 					type: "POST",
 					data: {
-						
 						id: id
 					},
 					success: function(response) {
 						var resp = JSON.parse(response);
 						$("#btnEliminar").removeAttr('style');
 						$("#id").val(resp.id);
-						$("#txt_id_plan").val(resp.id_Plan);
-						$("#txt_id_periodo").val(resp.id_periodo);
-						$("#txt_Nivel").val(resp.Nivel);
-						$("#txt_id_docente").val(resp.id_docente);
-						$("#txt_fechahora").val(resp.fechahora);
+						$("#txt_Docente").val(resp.Docente);
+						$("#txt_Materia").val(resp.Materia);
+						$("#txt_fecharegistro").val(resp.fecharegistro);
+						$("#txt_horaregistro").val(resp.horaregistro);
 						$("#txt_activo").val(resp.activo);
 						$("#txt_usuario").val(resp.usuario);
 						$("#titulo").html("Administración de departamentos | Editar Registro");

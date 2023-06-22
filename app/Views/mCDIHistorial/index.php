@@ -93,7 +93,7 @@
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-							<div class="modal-body">
+							<div class="modal-body" style="overflow-y: scroll;">
 								<form action="" method="POST" id="frmNuevo">
 									<div class="row">
 										<div class="col-md-4">
