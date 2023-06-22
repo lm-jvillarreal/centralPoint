@@ -49,13 +49,13 @@
 									<table id="departamentos" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th width='8%'>IdPeriodo</th>
-												<th width="8%">Cuatrimestre</th>
-                                                <th width="8%">Fechas</th>
-												<th width="8%">FechaRegistro</th>
-												<th width="8%">HoraRegistro</th>
-                                                <th width="8%">Activo</th>
-                                                <th width="8%">Usuario</th>
+												<th width='8%'>id</th>
+												<th width="8%">perido</th>
+                                                <th width="8%">fecha_inicio</th>
+												<th width="8%">fecha_fin</th>
+												<th width="8%">fechahora</th>
+                                                <th width="8%">activo</th>
+                                                <th width="8%">usuario</th>
 											</tr>
 										</thead>
 										<tbody></tbody>
@@ -84,49 +84,28 @@
 									<div class="row">
                                     <div class="col-md-4">
                                          <div class="col-md-4">
-											<div class="form-group" id="Cuatrimestre">
-												<label for="Cuatrimestre" class="form-label">*Cuatrimestre:</label>
+											<div class="form-group" id="periodo">
+												<label for="periodo" class="form-label">*Periodo:</label>
 												<input type="hidden" name="id" id="id">
-												<input type="text" name="txt_Cuatrimestre" id="txt_Cuatrimestre" class="form-control">
+												<input type="text" name="txt_periodo" id="txt_periodo" class="form-control">
+												<input type="hidden" name="txt_fechahora" id="txt_fechahora" class="form-control">
+												<input type="hidden" name="txt_activo" id="txt_activo" class="form-control">
+												<input type="hidden" name="txt_usuario" id="txt_usuario" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
                                         <div class="col-md-4">
-											<div class="form-group" id="Fechas">
-												<label for="Fechas" class="form-label">*Fechas:</label>
+											<div class="form-group" id="fecha_inicio">
+												<label for="fecha_inicio" class="form-label">*Fecha_Inicio:</label>
 												<input type="hidden" name="id" id="id">
-												<input type="text" name="txt_Fechas" id="txt_Fechas" class="form-control">
+												<input type="date" name="txt_fecha_inicio" id="txt_fecha_inicio" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
-											<div class="form-group" id="FechaRegsitro">
-												<label for="FechaRegistro" class="form-label">*FechaRegistro:</label>
+											<div class="form-group" id="fecha_fin">
+												<label for="fecha_fin" class="form-label">*Fecha_Fin:</label>
 												<input type="hidden" name="id" id="id">
-												<input type="datetime" name="txt_FechaRegistro" id="txt_FechaRegistro" class="form-control">
-												<div class="invalid-feedback"></div>
-											</div>
-										</div>
-                                        <div class="col-md-4">
-											<div class="form-group" id="HoraRegistro">
-												<label for="HoraRegistro" class="form-label">*HoraRegistro:</label>
-												<input type="hidden" name="id" id="id">
-												<input type="datetime" name="txt_HoraRegistro" id="txt_HoraRegistro" class="form-control">
-												<div class="invalid-feedback"></div>
-											</div>
-										</div>
-                                        <div class="col-md-4">
-											<div class="form-group" id="Activo">
-												<label for="Activo" class="form-label">*Activo:</label>
-												<input type="hidden" name="id" id="id">
-												<input type="text" name="txt_Activo" id="txt_Activo" class="form-control">
-												<div class="invalid-feedback"></div>
-											</div>
-										</div>
-                                        <div class="col-md-4">
-											<div class="form-group" id="Usuario">
-												<label for="Usuario" class="form-label">*Usuario:</label>
-												<input type="hidden" name="id" id="id">
-												<input type="text" name="txt_Usuario" id="txt_Usuario" class="form-control">
+												<input type="date" name="txt_fecha_fin" id="txt_fecha_fin" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
@@ -164,44 +143,44 @@
 		$(document).ready(function() {
 			Tabla();
 		});
-		$('#txt_responsable').select2({
-			theme: 'bootstrap4',
-			width: '100%',
-			dropdownParent: $("#modalNuevo"),
-			placeholder: 'Seleccione una opcion',
-			lenguage: 'es',
-			ajax: {
-				url: "Periodo/select",
-				type: "post",
-				dataType: 'json',
-				delay: 250,
-				data: function(params) {
-					return {
-						searchTerm: params.term // search term
-					};
-				},
-				processResults: function(response) {
-					return {
-						results: response
-					};
-				},
-				cache: true
-			}
-		});
+		// $('#txt_responsable').select2({
+		// 	theme: 'bootstrap4',
+		// 	width: '100%',
+		// 	dropdownParent: $("#modalNuevo"),
+		// 	placeholder: 'Seleccione una opcion',
+		// 	lenguage: 'es',
+		// 	ajax: {
+		// 		url: "Periodo/select",
+		// 		type: "post",
+		// 		dataType: 'json',
+		// 		delay: 250,
+		// 		data: function(params) {
+		// 			return {
+		// 				searchTerm: params.term // search term
+		// 			};
+		// 		},
+		// 		processResults: function(response) {
+		// 			return {
+		// 				results: response
+		// 			};
+		// 		},
+		// 		cache: true
+		// 	}
+		// });
 		$('#modalNuevo').on('hidden.bs.modal', function() {
 			$(this).find('frmNuevo').trigger('reset');
-			$("#Cuatrimestre > div").html("");
-			$("#Cuatrimestre > input").removeClass("is-invalid");
-			$("#Fechas > div").html("");
-			$("#Fechas > input").removeClass("is-invalid");
-			$("#FechaRegistro > div").html("");
-			$("#FechaRegistro > input").removeClass("is-invalid");
-            $("#HoraRegistro > div").html("");
-			$("#HoRegistro > input").removeClass("is-invalid");
-            $("#Activo > div").html("");
-			$("#Activo > input").removeClass("is-invalid");
-            $("#Usuario > div").html("");
-			$("#Usuario > input").removeClass("is-invalid");
+			$("#periodo > div").html("");
+			$("#periodo > input").removeClass("is-invalid");
+			$("#fecha_inicio > div").html("");
+			$("#fecha_inicio > input").removeClass("is-invalid");
+			$("#fecha_fin > div").html("");
+			$("#fecha_fin > input").removeClass("is-invalid");
+            $("#fechahora > div").html("");
+			$("#fechahora > input").removeClass("is-invalid");
+            $("#activo > div").html("");
+			$("#activo > input").removeClass("is-invalid");
+            $("#usuario > div").html("");
+			$("#usuario > input").removeClass("is-invalid");
 		})
 
 		function Tabla() {
@@ -267,22 +246,22 @@
 						"data": "id"
 					},
 					{
-						"data": "Cuatrimestre"
+						"data": "periodo"
 					},
 					{
-						"data": "Fechas"
+						"data": "fecha_inicio"
 					},
 					{
-						"data": "FechaRegistro"
+						"data": "fecha_fin"
 					},
                     {
-						"data": "HoraRegistro"
+						"data": "fechahora"
 					},
                     {
-						"data": "Activo"
+						"data": "activo"
 					},
                     {
-						"data": "Usuario"
+						"data": "usuario"
 					},
 				]
 			});
@@ -296,18 +275,18 @@
 			});
 		});
 		$("#btnGuardar").click(function() {
-			$("#Cuatrimestre > div").html("");
-			$("#Cuatrimestre > input").removeClass("is-invalid");
-			$("#Fechas > div").html("");
-			$("#Fechas > input").removeClass("is-invalid");
-			$("#FechaRegistro > div").html("");
-			$("#FechaRegistro input").removeClass("is-invalid");
-            $("#HoraRegistro > div").html("");
-			$("#HoraRegistro input").removeClass("is-invalid");
-            $("#Activo > div").html("");
-			$("#Activo input").removeClass("is-invalid");
-            $("#Usuario > div").html("");
-			$("#Usuario input").removeClass("is-invalid");
+			$("#periodo > div").html("");
+			$("#periodo > input").removeClass("is-invalid");
+			$("#fecha_inicio > div").html("");
+			$("#fecha_inicio > input").removeClass("is-invalid");
+			$("#fecha_fin > div").html("");
+			$("#fecha_fin input").removeClass("is-invalid");
+            $("#fechahora > div").html("");
+			$("#fechahora input").removeClass("is-invalid");
+            $("#activo > div").html("");
+			$("#activo input").removeClass("is-invalid");
+            $("#usuario > div").html("");
+			$("#usuario input").removeClass("is-invalid");
 			$.ajax({
 				url: "periodo/insertar",
 				type: "POST",
@@ -325,21 +304,29 @@
 				statusCode: {
 					400: function(xhr) {
 						var resp = JSON.parse(xhr.responseText);
-						if (resp.Cuatrimestre != "") {
-							$("#Cuatrimestre > div").html(resp.Cuatrimestre);
-							$("#Cuatrimestre > input").addClass("is-invalid");
+						if (resp.periodo != "") {
+							$("#periodo > div").html(resp.periodo);
+							$("#periodo > input").addClass("is-invalid");
 						}
-						if (resp.Fechas != "") {
-							$("#Fechas > div").html(resp.Fechas);
-							$("#Fechas > input").addClass("is-invalid");
+						if (resp.fecha_inicio != "") {
+							$("#fecha_inicio > div").html(resp.fecha_inicio);
+							$("#fecha_inicio > input").addClass("is-invalid");
 						}
-						if (resp.Fecharegistro != "") {
-							$("#FechaRegistro > div").html(resp.FechaRegistro);
-							$("#FechaRegistro > input").addClass("is-invalid");
+						if (resp.fecha_fin != "") {
+							$("#fecha_fin > div").html(resp.fecha_fin);
+							$("#fecha_fin > input").addClass("is-invalid");
 						}
-                        if (resp.HoraRegistro != "") {
-							$("HoraRegistro > div").html(resp.HoraRegistro);
-							$("#HoraRegistro > input").addClass("is-invalid");
+                        if (resp.fechahora != "") {
+							$("fechahora > div").html(resp.fechahora);
+							$("#fechahora > input").addClass("is-invalid");
+						}
+						if (resp.activo != "") {
+							$("activo > div").html(resp.activo);
+							$("#activo > input").addClass("is-invalid");
+						}
+						if (resp.usuario != "") {
+							$("usuario > div").html(resp.usuario);
+							$("#usuario > input").addClass("is-invalid");
 						}
 					},
 					401: function(xhr) {
@@ -353,12 +340,13 @@
 			if (origen == 'nuevo') {
 				$("#btnEliminar").css('display', 'none');
 				$("#id").val("");
-				$("#txt_Cutrimestre").val("");
-				$("#txt_Fechas").val("");
-				$("#txt_FechaRegistro").val("");
-                $("#txt_HoraRegistro").val("");
-                $("#txt_Activo").val("");
-                $("#txt_Usuario").val("");
+				$("#txt_periodo").val("");
+				$("#txt_periodo").val("");
+				$("#txt_fecha_inicio").val("");
+                $("#txt_fecha_fin").val("");
+                $("#txt_fechahora").val("");
+                $("#txt_activo").val("");
+				$("#txt_usuario").val("");
 				$("#modalNuevo").modal("show");
 				$("#titulo").html("Catálogo de Periodos | Nuevo Registro");
 			} else if (origen == 'editar') {
@@ -372,12 +360,12 @@
 						var resp = JSON.parse(response);
 						$("#btnEliminar").removeAttr('style');
 						$("#id").val(resp.id);
-						$("#txt_Cuatrimestre").val(resp.Cuatrimestre);
-						$("#txt_Fechas").val(resp.Fechas);
-						$("#txt_FechaRegistro").val(resp.FechaRegistro);
-                        $("#txt_HoraRegistro").val(resp.HoraRegistro);
-                        $("#txt_Activo").val(resp.Activo);
-                        $("#txt_Usuario").val(resp.Usuario);
+						$("#txt_periodo").val(resp.periodo);
+						$("#txt_fecha_inicio").val(resp.fecha_inicio);
+						$("#txt_fecha_fin").val(resp.fecah_fin);
+                        $("#txt_fechahora").val(resp.fechahora);
+                        $("#txt_activo").val(resp.activo);
+                        $("#txt_usuario").val(resp.usuario);
 						$("#titulo").html("Administración de Periodos | Editar Registro");
 						$("#modalNuevo").modal("show");
 					}
