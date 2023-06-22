@@ -49,9 +49,9 @@
 									<table id="departamentos" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th width='5%'>#id</th>
-												<th width='10%'>#id_grupo</th>
-												<th width='10%'>#id_alumno.</th>
+												<th width='5%'>#</th>
+												<th width='40%'>Grupo</th>
+												<th width='40%'>Alumno.</th>
 											
 												
 											</tr>
@@ -82,14 +82,14 @@
 									<div class="row">
 										<div class="col-md-4">
 											<div class="form-group" id="id_grupo">
-												<label for="id_grupo" class="form-label">*#id_grupo:</label>
+												<label for="id_grupo" class="form-label">*id_grupo:</label>
 												<input type="number" name="txt_id_grupo" id="txt_id_grupo" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
 										<div class="col-md-3">
 											<div class="form-group" id="id_alumno">
-												<label for="id_alumno" class="form-label">*#id_alumno:</label>
+												<label for="id_alumno" class="form-label">*id_alumno:</label>
 												<input type="number" name="txt_id_alumno" id="txt_id_alumno" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>

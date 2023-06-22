@@ -49,11 +49,11 @@
 									<table id="departamentos" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th width='5%'>#id</th>
-												<th width='10%'>#id_Plan</th>
-												<th width='10%'>#id_periodo.</th>
-												<th width='10%'>#Nivel.</th>
-												<th width='10%'>#id_docente.</th>
+												<th width='10%'>#</th>
+												<th width='10%'>Plan</th>
+												<th width='10%'>Periodo.</th>
+												<th width='10%'>Nivel.</th>
+												<th width='10%'>Docente.</th>
 												
 											</tr>
 										</thead>
@@ -83,21 +83,21 @@
 									<div class="row">
 										<div class="col-md-4">
 											<div class="form-group" id="id_Plan">
-												<label for="id_Plan" class="form-label">*#id_Plan:</label>
+												<label for="id_Plan" class="form-label">*id_Plan:</label>
 												<input type="number" name="txt_id_plan" id="txt_id_plan" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
 										<div class="col-md-3">
 											<div class="form-group" id="id_peroido">
-												<label for="id_periodo" class="form-label">*#id_periodo:</label>
+												<label for="id_periodo" class="form-label">*id_periodo:</label>
 												<input type="number" name="txt_id_periodo" id="txt_id_periodo" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
 										<div class="col-md-3">
 											<div class="form-group" id="Nivel">
-												<label for="Nivel" class="form-label">*#Nivel:</label>
+												<label for="Nivel" class="form-label">*Nivel:</label>
 												<input type="number" name="txt_Nivel" id="txt_Nivel" class="form-control">
 												<input type="hidden" name="txt_fechahora" id="txt_fechahora" class="form-control">
 												<input type="hidden" name="txt_activo" id="txt_activo" class="form-control">
