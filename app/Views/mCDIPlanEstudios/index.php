@@ -49,12 +49,11 @@
 									<table id="departamentos" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th width='8%'>id</th>
-												<th width="8%">clave</th>
-                                                <th width="8%">nombre</th>
-												<th width='8%'>fechahora</th>
-                                                <th width="8%">activo</th>
-                                                <th width="8%">usuario</th>
+
+                                                <th width="8%">#</th>
+												<th width="8%">Clave</th>
+                                                <th width="8%">Nombre</th>
+										
 											</tr>
 										</thead>
 										<tbody></tbody>
@@ -132,14 +131,14 @@
 		$(document).ready(function() {
 			Tabla();
 		});
-		$('#txt_responsable').select2({
+		$('#txt_nombre').select2({
 			theme: 'bootstrap4',
 			width: '100%',
 			dropdownParent: $("#modalNuevo"),
 			placeholder: 'Seleccione una opcion',
 			lenguage: 'es',
 			ajax: {
-				url: "persona/select",
+				url: "nombre/select",
 				type: "post",
 				dataType: 'json',
 				delay: 250,
@@ -251,8 +250,8 @@
 			});
 		}
 		$(document).ready(function() {
-			var table = $('#aspirantes').DataTable();
-			$('#aspirantes tbody').on('click', ' tr td:nth-child(1)', function() {
+			var table = $('#mCDIPlanEstudios').DataTable();
+			$('#mCDIPlanEstudios tbody').on('click', ' tr td:nth-child(1)', function() {
 				var rowIdx = table.row(this).index();
 				var id = table.cell(rowIdx, 0).data();
 				lanzarModal("editar", id);
@@ -276,7 +275,7 @@
 				success: function(response) {
 					var resp = JSON.parse(response);
 					$("#modalNuevo").modal("toggle");
-					$('#departamentos').DataTable().ajax.reload();
+					$('#mCDIPlanEstudios').DataTable().ajax.reload();
 					if (resp.msg == "insertado") {
 						toastr.success('Registro agregado correctamente');
 					} else if (resp.msg == "editado") {
@@ -361,7 +360,7 @@
 			}).then((result) => {
 				if (result.isConfirmed) {
 					$.ajax({
-						url: "aspirantes/eliminar",
+						url: "mCDIPlanEstudios/eliminar",
 						type: "POST",
 						data: {
 							id: id

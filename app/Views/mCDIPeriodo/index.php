@@ -27,7 +27,7 @@
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Peridos</a></li>
+								<li class="breadcrumb-item"><a href="#">Periodos</a></li>
 								<li class="breadcrumb-item active">Periodos</li>
 							</ol>
 						</div>
@@ -49,13 +49,13 @@
 									<table id="departamentos" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th width='8%'>id</th>
-												<th width="8%">perido</th>
-                                                <th width="8%">fecha_inicio</th>
-												<th width="8%">fecha_fin</th>
-												<th width="8%">fechahora</th>
-                                                <th width="8%">activo</th>
-                                                <th width="8%">usuario</th>
+												
+											    <th width="8%">#</th>
+												<th width="8%">Periodo</th>
+                                                <th width="8%">Fecha incial del periodo</th>
+												<th width="8%">Fecha final del periodo</th>
+												
+                                                
 											</tr>
 										</thead>
 										<tbody></tbody>
@@ -80,32 +80,34 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form action="" method="POST" id="frmNuevo">
+							<form action="" method="POST" id="frmNuevo">
 									<div class="row">
-                                    <div class="col-md-4">
-                                         <div class="col-md-4">
+										<div class="col-md-8">
 											<div class="form-group" id="periodo">
 												<label for="periodo" class="form-label">*Periodo:</label>
 												<input type="hidden" name="id" id="id">
 												<input type="text" name="txt_periodo" id="txt_periodo" class="form-control">
+												<div class="invalid-feedback"></div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-4">
+											<div  class="form-group" id="fecha_inicio">
+											  <label for="fecha_inicio" class="form-label">*Fecha inicial del periodo:</label>
+											  <input type="date" name="txt_fecha_inicio" id="txt_fecha_inicio" class="form-control">
+											  <div class="invalid-feedback"></div>
+											</div>
+										</div>
+										<h1>>_<</h1>
+										<div class="col-md-4">
+											<div class="form-group" id="fecha_fin">
+												<label for="fecha_fin" class="form-label">*Fecha final del periodo:</label>
+												<input type="date" name="txt_fecha_fin" id="txt_fecha_fin" class="form-control">
+
 												<input type="hidden" name="txt_fechahora" id="txt_fechahora" class="form-control">
 												<input type="hidden" name="txt_activo" id="txt_activo" class="form-control">
 												<input type="hidden" name="txt_usuario" id="txt_usuario" class="form-control">
-												<div class="invalid-feedback"></div>
-											</div>
-										</div>
-                                        <div class="col-md-4">
-											<div class="form-group" id="fecha_inicio">
-												<label for="fecha_inicio" class="form-label">*Fecha_Inicio:</label>
-												<input type="hidden" name="id" id="id">
-												<input type="date" name="txt_fecha_inicio" id="txt_fecha_inicio" class="form-control">
-												<div class="invalid-feedback"></div>
-											</div>
-										</div>
-											<div class="form-group" id="fecha_fin">
-												<label for="fecha_fin" class="form-label">*Fecha_Fin:</label>
-												<input type="hidden" name="id" id="id">
-												<input type="date" name="txt_fecha_fin" id="txt_fecha_fin" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
