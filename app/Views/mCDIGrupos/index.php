@@ -89,16 +89,16 @@
 											</div>
 										</div>
 										<div class="col-md-3">
-											<div class="form-group" id="id_peroido">
+											<div class="form-group" id="id_periodo">
 												<label for="id_periodo" class="form-label">*id_periodo:</label>
 												<input type="number" name="txt_id_periodo" id="txt_id_periodo" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
 										<div class="col-md-3">
-											<div class="form-group" id="Nivel">
+											<div class="form-group" id="nivel">
 												<label for="Nivel" class="form-label">*Nivel:</label>
-												<input type="number" name="txt_Nivel" id="txt_Nivel" class="form-control">
+												<input type="number" name="txt_nivel" id="txt_nivel" class="form-control">
 												<input type="hidden" name="txt_fechahora" id="txt_fechahora" class="form-control">
 												<input type="hidden" name="txt_activo" id="txt_activo" class="form-control">
 												<input type="hidden" name="txt_usuario" id="txt_usuario" class="form-control">
@@ -154,10 +154,10 @@
 			$(this).find('frmNuevo').trigger('reset');
 			$("#id_Plan > div").html("");
 			$("#id_Plan > input").removeClass("is-invalid");
-			$("#id_peroido > div").html("");
-			$("#id_peroido > input").removeClass("is-invalid");
-			$("#Nivel > div").html("");
-			$("#Nivel > input").removeClass("is-invalid");
+			$("#id_periodo > div").html("");
+			$("#id_periodo > input").removeClass("is-invalid");
+			$("#nivel > div").html("");
+			$("#nivel > input").removeClass("is-invalid");
 			$("#id_docente > div").html("");
 			$("#id_docente > input").removeClass("is-invalid");
 			$("#txt_fechahora > div").html("");
@@ -171,7 +171,7 @@
 		})
 
 		function Tabla() {
-			var tabla = $("#departamentos").DataTable({
+			var tabla = $("#mCDIGrupos").DataTable({
 				"language": {
 					"url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
 				},
@@ -222,24 +222,24 @@
 						}
 					},
 				],
-				// "ajax": {
-				// 	type: "POST",
-				// 	url: "departamento/listar",
-				// 	dataSrc: "",
-				// 	data: "",
-				// },
+				"ajax": {
+					type: "POST",
+					url: "mCDIGrupos/listar",
+					dataSrc: "",
+					data: "",
+				},
 				"columns": [{
 						"type": "html-num",
 						"data": "id"
 					},
 					{
-						"data": "id_plan"
+						"data": "id_Plan"
 					},
 					{
 						"data": "id_periodo"
 					},
 					{
-						"data": "Nivel"
+						"data": "nivel"
 					},
 					{
 						"data": "id_docente"
@@ -248,8 +248,8 @@
 			});
 		}
 		$(document).ready(function() {
-			var table = $('#departamentos').DataTable();
-			$('#departamentos tbody').on('click', ' tr td:nth-child(1)', function() {
+			var table = $('#mCDIGrupos').DataTable();
+			$('#mCDIGrupos tbody').on('click', ' tr td:nth-child(1)', function() {
 				var rowIdx = table.row(this).index();
 				var id = table.cell(rowIdx, 0).data();
 				lanzarModal("editar", id);
@@ -273,7 +273,7 @@
 			$("#txt_usuario > input").removeClass("is-invalid");
 			
 			$.ajax({
-				url: "detalle/insertar",
+				url: "grupos/insertar",
 				type: "POST",
 				data: $("#frmNuevo").serialize(),
 				success: function(response) {
@@ -337,10 +337,10 @@
 				$("#txt_activo").val("");
 				$("#txt_usuario").val("");
 				$("#modalNuevo").modal("show");
-				$("#titulo").html("Catálogo de Aspirantes | Nuevo Registro");
+				$("#titulo").html("Catálogo de Grupos | Nuevo Registro");
 			} else if (origen == 'editar') {
 				$.ajax({
-					url: "departamento/campos",
+					url: "grupos/campos",
 					type: "POST",
 					data: {
 						
