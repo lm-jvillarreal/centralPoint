@@ -10,9 +10,9 @@ class Grupos extends Model{
     public function listarGrupos(){
         $grupos=$this->db->table("mCDIGrupos AS G");
         $grupos->select("G.id, G.id_Plan, G.id_periodo, G.nivel, id_docente");
-        $grupos->select("(SELECT CONCAT(nombre) FROM mCDIPlanEstudio WHERE id=G.id_Plan)");
-        $grupos->select("(SELECT CONCAT(periodo) FROM mCDIPeriodos WHERE id=G.id_periodo)");
-      
+        $grupos->select("(SELECT CONCAT(nombre) FROM mCDIPlanEstudios WHERE id=G.id_Plan)");
+        // $grupos->select("(SELECT CONCAT(periodo) FROM mCDIPeriodos WHERE id=G.id_periodo)");
+
         return $grupos->get()->getResultArray();
     }
     public function listarSelect($search)
@@ -32,8 +32,8 @@ class Grupos extends Model{
     public function camposGrupos($id){
         $grupos=$this->db->table("mCDIGrupos AS G");
         $grupos->select("G.id, G.id_Plan, G.id_periodo, G.nivel, id_docente");
-        $grupos->select("(SELECT CONCAT(nombre) FROM mCDIPlanEstudio WHERE id=G.id_Plan)");
-        $grupos->select("(SELECT CONCAT(periodo) FROM mCDIPeriodos WHERE id=G.id_periodo)");
+        $grupos->select("(SELECT CONCAT(nombre) FROM mCDIPlanEstudios WHERE id=G.id_Plan)");
+        // $grupos->select("(SELECT CONCAT(periodo) FROM mCDIPeriodos WHERE id=G.id_periodo)");
       
         return $grupos->get()->getResultArray();
     }
@@ -44,7 +44,7 @@ class Grupos extends Model{
             "id_periodo"=>$periodo,
             "nivel"=>$nivel,
             "id_docente"=>$docente,
-            "fechahora"=>date_time("Y-m-d H:i:s"),
+            "fechahora"=>date("Y-m-d H:i:s"),
             "activo"=>1,
             "usuario"=>session('id_usuario')
         ];
