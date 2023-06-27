@@ -159,7 +159,7 @@
 		})
 
 		function Tabla() {
-			var tabla = $("#departamentos").DataTable({
+			var tabla = $("#mCDIdetalle_grupo").DataTable({
 				"language": {
 					"url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
 				},
@@ -210,12 +210,12 @@
 						}
 					},
 				],
-				// "ajax": {
-				// 	type: "POST",
-				// 	url: "departamento/listar",
-				// 	dataSrc: "",
-				// 	data: "",
-				// },
+				"ajax": {
+					type: "POST",
+					url: "detallegrupo/listar",
+					dataSrc: "",
+					data: "",
+				},
 				"columns": [{
 						"type": "html-num",
 						"data": "id"
@@ -232,8 +232,8 @@
 			});
 		}
 		$(document).ready(function() {
-			var table = $('#departamentos').DataTable();
-			$('#departamentos tbody').on('click', ' tr td:nth-child(1)', function() {
+			var table = $('#mCDIdetalle_grupo').DataTable();
+			$('#mCDIdetalle_grupo tbody').on('click', ' tr td:nth-child(1)', function() {
 				var rowIdx = table.row(this).index();
 				var id = table.cell(rowIdx, 0).data();
 				lanzarModal("editar", id);
@@ -254,7 +254,7 @@
 			$("#usuario > div").html("");
 			$("#usuario > select").removeClass("is-invalid");
 			$.ajax({
-				url: "aspirantes/insertar",
+				url: "detalle/insertar",
 				type: "POST",
 				data: $("#frmNuevo").serialize(),
 				success: function(response) {
@@ -318,7 +318,7 @@
 				$("#titulo").html("Catálogo de Aspirantes | Nuevo Registro");
 			} else if (origen == 'editar') {
 				$.ajax({
-					url: "departamento/campos",
+					url: "detalle/campos",
 					type: "POST",
 					data: {
 						id: id
@@ -353,7 +353,7 @@
 			}).then((result) => {
 				if (result.isConfirmed) {
 					$.ajax({
-						url: "departamento/eliminar",
+						url: "detalle/eliminar",
 						type: "POST",
 						data: {
 							id: id
