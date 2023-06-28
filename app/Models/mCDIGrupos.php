@@ -11,7 +11,7 @@ class Grupos extends Model{
         $grupos=$this->db->table("mCDIGrupos AS G");
         $grupos->select("G.id, G.id_Plan, G.id_periodo, G.nivel, id_docente");
         $grupos->select("(SELECT CONCAT(nombre) FROM mCDIPlanEstudios WHERE id=G.id_Plan)");
-        // $grupos->select("(SELECT CONCAT(periodo) FROM mCDIPeriodos WHERE id=G.id_periodo)");
+        $grupos->select("(SELECT CONCAT(periodo) FROM mCDIPeriodos WHERE id=G.id_periodo)");
 
         return $grupos->get()->getResultArray();
     }
@@ -19,12 +19,12 @@ class Grupos extends Model{
     {
         $grupos = $this->db->table("mCDIGrupos");
         if($search==""){
-            $grupos->select('id,id_Plan,id_periodo,nivel');
+            $grupos->select('id,id_Plan,id_periodo,nivel,docente');
             $grupos->where("activo",1);
         }
         else
         {
-            $grupos->select('id,id_Plan,id_periodo,nivel');
+            $grupos->select('id,id_Plan,id_periodo,nivel,docente');
             $grupos->where("activo",1);
             $grupos->like('id_Plan',$search);
         }
