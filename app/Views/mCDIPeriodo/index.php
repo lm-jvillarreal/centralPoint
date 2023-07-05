@@ -23,12 +23,12 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>Administración de Grupos</h1>
+							<h1>PERIODOS</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Administración y Seguridad</a></li>
-								<li class="breadcrumb-item active">Grupos</li>
+								<li class="breadcrumb-item"><a href="#">Periodos</a></li>
+								<li class="breadcrumb-item active">Periodos</li>
 							</ol>
 						</div>
 					</div>
@@ -42,19 +42,20 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">Catálogo de Grupos</h3>
+									<h3 class="card-title">Periodos</h3>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<table id="departamentos" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th width='10%'>#</th>
-												<th width='10%'>Plan</th>
-												<th width='10%'>Periodo.</th>
-												<th width='10%'>Nivel.</th>
-												<th width='10%'>Docente.</th>
 												
+											    <th width="8%">#</th>
+												<th width="8%">Periodo</th>
+                                                <th width="8%">Fecha incial del periodo</th>
+												<th width="8%">Fecha final del periodo</th>
+												
+                                                
 											</tr>
 										</thead>
 										<tbody></tbody>
@@ -79,49 +80,44 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form action="" method="POST" id="frmNuevo">
+							<form action="" method="POST" id="frmNuevo">
+									<div class="row">
+										<div class="col-md-8">
+											<div class="form-group" id="periodo">
+												<label for="periodo" class="form-label">*Periodo:</label>
+												<input type="hidden" name="id" id="id">
+												<input type="text" name="txt_periodo" id="txt_periodo" class="form-control">
+												<div class="invalid-feedback"></div>
+											</div>
+										</div>
+									</div>
 									<div class="row">
 										<div class="col-md-4">
-											<div class="form-group" id="id_Plan">
-												<label for="txt_id_plan" class="form-label">*id_Plan:</label>
-												<input type="number" name="txt_id_plan" id="txt_id_plan" class="form-control">
-												<div class="invalid-feedback"></div>
+											<div  class="form-group" id="fecha_inicio">
+											  <label for="fecha_inicio" class="form-label">*Fecha inicial del periodo:</label>
+											  <input type="date" name="txt_fecha_inicio" id="txt_fecha_inicio" class="form-control">
+											  <div class="invalid-feedback"></div>
 											</div>
 										</div>
-										<div class="col-md-3">
-											<div class="form-group" id="id_periodo">
-												<label for="txt_id_periodo" class="form-label">*id_periodo:</label>
-												<input type="number" name="txt_id_periodo" id="txt_id_periodo" class="form-control">
-												<div class="invalid-feedback"></div>
-											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="form-group" id="nivel">
-												<label for="txt_nivel" class="form-label">*Nivel:</label>
-												<input type="number" name="txt_nivel" id="txt_nivel" class="form-control">
+										<h1>>_<</h1>
+										<div class="col-md-4">
+											<div class="form-group" id="fecha_fin">
+												<label for="fecha_fin" class="form-label">*Fecha final del periodo:</label>
+												<input type="date" name="txt_fecha_fin" id="txt_fecha_fin" class="form-control">
+
 												<input type="hidden" name="txt_fechahora" id="txt_fechahora" class="form-control">
 												<input type="hidden" name="txt_activo" id="txt_activo" class="form-control">
 												<input type="hidden" name="txt_usuario" id="txt_usuario" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
-										
-										<div class="col-md-3">
-											<div class="form-group" id="id_docente">
-												<label for="id_docente" class="form-label">*#id_docente:</label>
-												<input type="number" name="txt_id_docente" id="txt_id_docente" class="form-control">
-												<div class="invalid-feedback"></div>
-											</div>
-										</div>
-										
-										
-									
+									</div>
 								</form>
 							</div>
 							<div class="modal-footer justify-content-between">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 								<button type="button" id="btnEliminar" class="btn btn-danger ml-auto" style="display:none;">Eliminar</button>
-								<button type="button" class="btn btn-secondary" id="btnGuardar">Guardar </button>
+								<button type="button" class="btn btn-secondary" id="btnGuardar">Guardar informacion</button>
 							</div>
 						</div>
 						<!-- /.modal-content -->
@@ -134,6 +130,7 @@
 		</div>
 		<!-- /.content-wrapper -->
 		<?= $footer2; ?>
+
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
 			<!-- Control sidebar content goes here -->
@@ -148,29 +145,48 @@
 		$(document).ready(function() {
 			Tabla();
 		});
-		
-		function removerClass() {
+		// $('#txt_responsable').select2({
+		// 	theme: 'bootstrap4',
+		// 	width: '100%',
+		// 	dropdownParent: $("#modalNuevo"),
+		// 	placeholder: 'Seleccione una opcion',
+		// 	lenguage: 'es',
+		// 	ajax: {
+		// 		url: "Periodo/select",
+		// 		type: "post",
+		// 		dataType: 'json',
+		// 		delay: 250,
+		// 		data: function(params) {
+		// 			return {
+		// 				searchTerm: params.term // search term
+		// 			};
+		// 		},
+		// 		processResults: function(response) {
+		// 			return {
+		// 				results: response
+		// 			};
+		// 		},
+		// 		cache: true
+		// 	}
+		// });
+		$('#modalNuevo').on('hidden.bs.modal', function() {
 			$(this).find('frmNuevo').trigger('reset');
-			$("#id_Plan > div").html("");
-			$("#id_Plan > input").removeClass("is-invalid");
-			$("#id_periodo > div").html("");
-			$("#id_periodo > input").removeClass("is-invalid");
-			$("#nivel > div").html("");
-			$("#nivel > input").removeClass("is-invalid");
-			$("#id_docente > div").html("");
-			$("#id_docente > input").removeClass("is-invalid");
-			$("#txt_fechahora > div").html("");
-			$("#txt_fechahora > input").removeClass("is-invalid");
-			$("#txt_activo > div").html("");
-			$("#txt_activo > input").removeClass("is-invalid");
-			$("#txt_usuario > div").html("");
-			$("#txt_usuario > input").removeClass("is-invalid");
-
-			
-		}
+			$("#periodo > div").html("");
+			$("#periodo > input").removeClass("is-invalid");
+			$("#fecha_inicio > div").html("");
+			$("#fecha_inicio > input").removeClass("is-invalid");
+			$("#fecha_fin > div").html("");
+			$("#fecha_fin > input").removeClass("is-invalid");
+            $("#fechahora > div").html("");
+			$("#fechahora > input").removeClass("is-invalid");
+            $("#activo > div").html("");
+			$("#activo > input").removeClass("is-invalid");
+            $("#usuario > div").html("");
+			$("#usuario > input").removeClass("is-invalid");
+		})
 
 		function Tabla() {
-			var tabla = $("#mCDIGrupos").DataTable({
+			var tabla = $("#departamentos").DataTable({
 				"language": {
 					"url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
 				},
@@ -221,99 +237,98 @@
 						}
 					},
 				],
-				"ajax": {
-					type: "POST",
-					url: "mCDIGrupos/listar",
-					dataSrc: "",
-					data: "",
-				},
+				// "ajax": {
+				// 	type: "POST",
+				// 	url: "departamento/listar",
+				// 	dataSrc: "",
+				// 	data: "",
+				// },
 				"columns": [{
 						"type": "html-num",
 						"data": "id"
 					},
 					{
-						"data": "id_Plan"
+						"data": "periodo"
 					},
 					{
-						"data": "id_periodo"
+						"data": "fecha_inicio"
 					},
 					{
-						"data": "nivel"
+						"data": "fecha_fin"
 					},
-					{
-						"data": "id_docente"
+                    {
+						"data": "fechahora"
+					},
+                    {
+						"data": "activo"
+					},
+                    {
+						"data": "usuario"
 					},
 				]
 			});
 		}
 		$(document).ready(function() {
-			var table = $('#mCDIGrupos').DataTable();
-			$('#mCDIGrupos tbody').on('click', ' tr td:nth-child(1)', function() {
+			var table = $('#aspirantes').DataTable();
+			$('#aspirantes tbody').on('click', ' tr td:nth-child(1)', function() {
 				var rowIdx = table.row(this).index();
 				var id = table.cell(rowIdx, 0).data();
 				lanzarModal("editar", id);
 			});
 		});
 		$("#btnGuardar").click(function() {
-			$(this).find('frmNuevo').trigger('reset');
-			$("#id_Plan > div").html("");
-			$("#id_Plan > input").removeClass("is-invalid");
-			$("#id_periodo > div").html("");
-			$("#id_periodo > input").removeClass("is-invalid");
-			$("#Nivel > div").html("");
-			$("#Nivel > input").removeClass("is-invalid");
-			$("#id_docente > div").html("");
-			$("#id_docente > input").removeClass("is-invalid");
-			$("#txt_fechahora > div").html("");
-			$("#txt_fechahora > input").removeClass("is-invalid");
-			$("#txt_activo > div").html("");
-			$("#txt_activo > input").removeClass("is-invalid");
-			$("#txt_usuario > div").html("");
-			$("#txt_usuario > input").removeClass("is-invalid");
+			$("#periodo > div").html("");
+			$("#periodo > input").removeClass("is-invalid");
+			$("#fecha_inicio > div").html("");
+			$("#fecha_inicio > input").removeClass("is-invalid");
+			$("#fecha_fin > div").html("");
+			$("#fecha_fin input").removeClass("is-invalid");
+            $("#fechahora > div").html("");
+			$("#fechahora input").removeClass("is-invalid");
+            $("#activo > div").html("");
+			$("#activo input").removeClass("is-invalid");
+            $("#usuario > div").html("");
+			$("#usuario input").removeClass("is-invalid");
 			$.ajax({
-				url: "grupos/insertar",
+				url: "periodo/insertar",
 				type: "POST",
 				data: $("#frmNuevo").serialize(),
 				success: function(response) {
 					var resp = JSON.parse(response);
 					$("#modalNuevo").modal("toggle");
-					$('#Grupos').DataTable().ajax.reload();
+					$('#departamentos').DataTable().ajax.reload();
 					if (resp.msg == "insertado") {
 						toastr.success('Registro agregado correctamente');
 					} else if (resp.msg == "editado") {
 						toastr.success('Registro actualizado correctamente');
-					} 
+					}
 				},
 				statusCode: {
 					400: function(xhr) {
 						var resp = JSON.parse(xhr.responseText);
-						if (resp.id_Plan != "") {
-							$("#id_Plan > div").html(resp.id_Plan);
-							$("#id_Plan > input").addClass("is-invalid");
+						if (resp.periodo != "") {
+							$("#periodo > div").html(resp.periodo);
+							$("#periodo > input").addClass("is-invalid");
 						}
-						if (resp.id_peroido != "") {
-							$("#id_peroido > div").html(resp.id_peroido);
-							$("#id_peroido > input").addClass("is-invalid");
+						if (resp.fecha_inicio != "") {
+							$("#fecha_inicio > div").html(resp.fecha_inicio);
+							$("#fecha_inicio > input").addClass("is-invalid");
 						}
-						if (resp.Nivel != "") {
-							$("#Nivel > div").html(resp.Nivel);
-							$("#Nivel > select").addClass("is-invalid");
+						if (resp.fecha_fin != "") {
+							$("#fecha_fin > div").html(resp.fecha_fin);
+							$("#fecha_fin > input").addClass("is-invalid");
 						}
-						if (resp.id_docente != "") {
-							$("#id_docente > div").html(resp.id_docente);
-							$("#id_docente > select").addClass("is-invalid");
+                        if (resp.fechahora != "") {
+							$("fechahora > div").html(resp.fechahora);
+							$("#fechahora > input").addClass("is-invalid");
 						}
-						if (resp.txt_fechahora != "") {
-							$("#txt_fechahora > div").html(resp.txt_fechahora);
-							$("#txt_fechahora > select").addClass("is-invalid");
+						if (resp.activo != "") {
+							$("activo > div").html(resp.activo);
+							$("#activo > input").addClass("is-invalid");
 						}
-						if (resp.txt_activo != "") {
-							$("#txt_activo > div").html(resp.txt_activo);
-							$("#txt_activo > select").addClass("is-invalid");
-						}
-						if (resp.txt_usuario != "") {
-							$("#txt_usuario > div").html(resp.txt_usuario);
-							$("#txt_usuario > select").addClass("is-invalid");
+						if (resp.usuario != "") {
+							$("usuario > div").html(resp.usuario);
+							$("#usuario > input").addClass("is-invalid");
 						}
 					},
 					401: function(xhr) {
@@ -327,35 +342,33 @@
 			if (origen == 'nuevo') {
 				$("#btnEliminar").css('display', 'none');
 				$("#id").val("");
-				$("#txt_id_plan").val("");
-				$("#txt_id_periodo").val("");
-				$("#txt_Nivel").val("");
-				$("#txt_id_docente").val("");
-				$("#txt_fechahora").val("");
-				$("#txt_activo").val("");
+				$("#txt_periodo").val("");
+				$("#txt_periodo").val("");
+				$("#txt_fecha_inicio").val("");
+                $("#txt_fecha_fin").val("");
+                $("#txt_fechahora").val("");
+                $("#txt_activo").val("");
 				$("#txt_usuario").val("");
 				$("#modalNuevo").modal("show");
-				$("#titulo").html("Catálogo de Grupos | Nuevo Registro");
+				$("#titulo").html("Catálogo de Periodos | Nuevo Registro");
 			} else if (origen == 'editar') {
 				$.ajax({
-					url: "grupos/campos",
+					url: "Periodos/campos",
 					type: "POST",
 					data: {
-						
 						id: id
 					},
 					success: function(response) {
 						var resp = JSON.parse(response);
 						$("#btnEliminar").removeAttr('style');
 						$("#id").val(resp.id);
-						$("#txt_id_plan").val(resp.id_Plan);
-						$("#txt_id_periodo").val(resp.id_periodo);
-						$("#txt_Nivel").val(resp.Nivel);
-						$("#txt_id_docente").val(resp.id_docente);
-						$("#txt_fechahora").val(resp.fechahora);
-						$("#txt_activo").val(resp.activo);
-						$("#txt_usuario").val(resp.usuario);
-						$("#titulo").html("Administración de departamentos | Editar Registro");
+						$("#txt_periodo").val(resp.periodo);
+						$("#txt_fecha_inicio").val(resp.fecha_inicio);
+						$("#txt_fecha_fin").val(resp.fecah_fin);
+                        $("#txt_fechahora").val(resp.fechahora);
+                        $("#txt_activo").val(resp.activo);
+                        $("#txt_usuario").val(resp.usuario);
+						$("#titulo").html("Administración de Periodos | Editar Registro");
 						$("#modalNuevo").modal("show");
 					}
 				})
@@ -375,7 +388,7 @@
 			}).then((result) => {
 				if (result.isConfirmed) {
 					$.ajax({
-						url: "grupos/eliminar",
+						url: "aspirantes/eliminar",
 						type: "POST",
 						data: {
 							id: id

@@ -54,7 +54,7 @@
                 <a href="#" class="nav-link active">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
-                        Cambiar contraseña
+                        Asignación de mobiliario
                     </p>
                 </a>
             </li>

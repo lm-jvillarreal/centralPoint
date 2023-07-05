@@ -23,11 +23,11 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>Administración de Aspirantes</h1>
+							<h1>Ficha de inscripcion de aspirantes</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Administración y Seguridad</a></li>
+								<li class="breadcrumb-item"><a href="#">Ficha inscripcion</a></li>
 								<li class="breadcrumb-item active">Aspirantes</li>
 							</ol>
 						</div>
@@ -42,21 +42,21 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">Catálogo de Aspirantes</h3>
+									<h3 class="card-title">aspirantes</h3>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<table id="departamentos" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-												<th width='5%'>#</th>
-												<th width='10%'>Nombre</th>
-												<th width='10%'>Telefono.</th>
-												<th width="10%">Ocupacion</th>
-												<th width="15%">Fecha Registro</th>
-												<th width="15%">Hora Registro</th>
-												<th width="8%">Activo</th>
-												<th width="8%">Usuario</th>
+												<th width='8%'>IdAspirante</th>
+												<th width="8%">Nombre</th>
+                                                <th width="8%">Telefono</th>
+												<th width='8%'>Ocupacion</th>
+												<th width="8%">FechaRegistro</th>
+												<th width="8%">HoraRegistro</th>
+                                                <th width="8%">Activo</th>
+                                                <th width="8%">Usuario</th>
 											</tr>
 										</thead>
 										<tbody></tbody>
@@ -85,62 +85,67 @@
 									<div class="row">
 										<div class="col-md-4">
 											<div class="form-group" id="nombre">
-												<label for="departamento" class="form-label">*Nombre:</label>
+												<label for="nombre" class="form-label">*Nombre:</label>
 												<input type="hidden" name="id" id="id">
 												<input type="text" name="txt_nombre" id="txt_nombre" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
-										<div class="col-md-3">
+										<div class="col-md-4">
 											<div class="form-group" id="telefono">
 												<label for="telefono" class="form-label">*Telefono:</label>
 												<input type="number" name="txt_telefono" id="txt_telefono" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
-										<div class="col-md-3">
+										<div class="col-md-4">
 											<div class="form-group" id="ocupacion">
-												<label for="abreviatura" class="form-label">*Ocupacion:</label>
+												<label for="" class="form-label">*Ocupacion:</label>
 												<input type="text" name="txt_ocupacion" id="txt_ocupacion" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
-										<div class="col-md-3">
-											<div class="form-group" id="fecharegistro">
-												<label for="fecharegistro" class="form-label">*Fecha Registro:</label>
-												<input type="datatime" name="txt_fecharegistro" id="txt_fecharegistro" class="form-control">
+									</div>
+									<div class="row">
+                                    <div class="col-md-4">
+											<div class="form-group" id="fecharegsitro">
+												<label for="fecharegistro" class="form-label">*FechaRegistro:</label>
+												<input type="hidden" name="id" id="id">
+												<input type="datetime" name="txt_fecharegistro" id="txt_fecharegistro" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
-										<div class="col-md-3">
+                                        <div class="col-md-4">
 											<div class="form-group" id="horaregistro">
-												<label for="horaregistro" class="form-label">*Hora Registro:</label>
-												<input type="datatime" name="txt_horaregistro" id="txt_horaregistro" class="form-control">
+												<label for="horaregistro" class="form-label">*HoraRegistro:</label>
+												<input type="hidden" name="id" id="id">
+												<input type="datetime" name="txt_horaregistro" id="txt_horaregistro" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
-										<div class="col-md-3">
+                                        <div class="col-md-4">
 											<div class="form-group" id="activo">
-												<label for="abreviatura" class="form-label">*Activo:</label>
-												<input type="number" name="txt_activo" id="txt_activo" class="form-control">
+												<label for="activo" class="form-label">*Activo:</label>
+												<input type="hidden" name="id" id="id">
+												<input type="text" name="txt_activo" id="txt_activo" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
-										<div class="col-md-3">
+                                        <div class="col-md-4">
 											<div class="form-group" id="usuario">
 												<label for="usuario" class="form-label">*Usuario:</label>
+												<input type="hidden" name="id" id="id">
 												<input type="text" name="txt_usuario" id="txt_usuario" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
 									</div>
-									
 								</form>
 							</div>
 							<div class="modal-footer justify-content-between">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 								<button type="button" id="btnEliminar" class="btn btn-danger ml-auto" style="display:none;">Eliminar</button>
-								<button type="button" class="btn btn-secondary" id="btnGuardar">Guardar Aspirante</button>
+								<button type="button" class="btn btn-secondary" id="btnGuardar">Guardar informacion</button>
 							</div>
 						</div>
 						<!-- /.modal-content -->
@@ -201,13 +206,13 @@
 			$("#ocupacion > div").html("");
 			$("#ocupacion > input").removeClass("is-invalid");
 			$("#fecharegistro > div").html("");
-			$("#fecharegistro > select").removeClass("is-invalid");
-			$("#horaregistro > div").html("");
-			$("#horaregistro > select").removeClass("is-invalid");
-			$("#activo > div").html("");
-			$("#activo > select").removeClass("is-invalid");
-			$("#usuario > div").html("");
-			$("#usuario > select").removeClass("is-invalid");
+			$("#fecharegistro > input").removeClass("is-invalid");
+            $("#horaregistro > div").html("");
+			$("#horagistro > input").removeClass("is-invalid");
+            $("#activo > div").html("");
+			$("#activo > input").removeClass("is-invalid");
+            $("#usuario > div").html("");
+			$("#usuario > input").removeClass("is-invalid");
 		})
 
 		function Tabla() {
@@ -273,7 +278,7 @@
 						"data": "id"
 					},
 					{
-						"data": "nonbre"
+						"data": "nombre"
 					},
 					{
 						"data": "telefono"
@@ -284,21 +289,21 @@
 					{
 						"data": "fecharegistro"
 					},
-					{
+                    {
 						"data": "horaregistro"
 					},
-					{
+                    {
 						"data": "activo"
 					},
-					{
+                    {
 						"data": "usuario"
-					}
+					},
 				]
 			});
 		}
 		$(document).ready(function() {
-			var table = $('#departamentos').DataTable();
-			$('#departamentos tbody').on('click', ' tr td:nth-child(1)', function() {
+			var table = $('#aspirantes').DataTable();
+			$('#aspirantes tbody').on('click', ' tr td:nth-child(1)', function() {
 				var rowIdx = table.row(this).index();
 				var id = table.cell(rowIdx, 0).data();
 				lanzarModal("editar", id);
@@ -310,23 +315,23 @@
 			$("#telefono > div").html("");
 			$("#telefono > input").removeClass("is-invalid");
 			$("#ocupacion > div").html("");
-			$("#ocupacion > input").removeClass("is-invalid");
+			$("#ocupacon > input").removeClass("is-invalid");
 			$("#fecharegistro > div").html("");
-			$("#fecharegistro > select").removeClass("is-invalid");
-			$("#horaregistro > div").html("");
-			$("#horaregistro > select").removeClass("is-invalid");
-			$("#activo > div").html("");
-			$("#activo > select").removeClass("is-invalid");
-			$("#usuario > div").html("");
-			$("#usuario > select").removeClass("is-invalid");
+			$("#fecharegistro input").removeClass("is-invalid");
+            $("#horaregistro > div").html("");
+			$("#horaregistro input").removeClass("is-invalid");
+            $("#activo > div").html("");
+			$("#activo input").removeClass("is-invalid");
+            $("#usuario > div").html("");
+			$("#usuario input").removeClass("is-invalid");
 			$.ajax({
-				url: "aspirantes/insertar",
+				url: "aspirante/insertar",
 				type: "POST",
 				data: $("#frmNuevo").serialize(),
 				success: function(response) {
 					var resp = JSON.parse(response);
 					$("#modalNuevo").modal("toggle");
-					$('#aspirantes').DataTable().ajax.reload();
+					$('#departamentos').DataTable().ajax.reload();
 					if (resp.msg == "insertado") {
 						toastr.success('Registro agregado correctamente');
 					} else if (resp.msg == "editado") {
@@ -336,7 +341,7 @@
 				statusCode: {
 					400: function(xhr) {
 						var resp = JSON.parse(xhr.responseText);
-						if (resp.nombre != "") {
+						if (resp.departamento != "") {
 							$("#nombre > div").html(resp.nombre);
 							$("#nombre > input").addClass("is-invalid");
 						}
@@ -350,19 +355,11 @@
 						}
 						if (resp.fecharegistro != "") {
 							$("#fecharegistro > div").html(resp.fecharegistro);
-							$("#fecharegistro > select").addClass("is-invalid");
+							$("#fecharegistro > input").addClass("is-invalid");
 						}
-						if (resp.horaregistro != "") {
+                        if (resp.horaregistro != "") {
 							$("#horaregistro > div").html(resp.horaregistro);
-							$("#horaregistro > select").addClass("is-invalid");
-						}
-						if (resp.activo != "") {
-							$("#activo > div").html(resp.activo);
-							$("#activo > select").addClass("is-invalid");
-						}
-						if (resp.usuario != "") {
-							$("#usuario > div").html(resp.usuario);
-							$("#usuario > select").addClass("is-invalid");
+							$("#horaregistro > input").addClass("is-invalid");
 						}
 					},
 					401: function(xhr) {
@@ -380,14 +377,14 @@
 				$("#txt_telefono").val("");
 				$("#txt_ocupacion").val("");
 				$("#txt_fecharegistro").val("");
-				$("#txt_horaregistro").val("");
-				$("#txt_activo").val("");
-				$("#txt_usuario").val("");
+                $("#txt_horaregistro").val("");
+                $("#txt_activo").val("");
+                $("#txt_usuario").val("");
 				$("#modalNuevo").modal("show");
-				$("#titulo").html("Catálogo de Aspirantes | Nuevo Registro");
+				$("#titulo").html("Catálogo de aspirantes | Nuevo Registro");
 			} else if (origen == 'editar') {
 				$.ajax({
-					url: "departamento/campos",
+					url: "aspirantes/campos",
 					type: "POST",
 					data: {
 						id: id
@@ -400,10 +397,10 @@
 						$("#txt_telefono").val(resp.telefono);
 						$("#txt_ocupacion").val(resp.ocupacion);
 						$("#txt_fecharegistro").val(resp.fecharegistro);
-						$("#txt_horaregistro").val(resp.horaregistro);
-						$("#txt_activo").val(resp.activo);
-						$("#txt_usuario").val(resp.usuario);
-						$("#titulo").html("Administración de departamentos | Editar Registro");
+                        $("#txt_horaregistro").val(resp.horaregistro);
+                        $("#txt_activo").val(resp.activo);
+                        $("#txt_usuario").val(resp.usuario);
+						$("#titulo").html("Administración de aspirantes | Editar Registro");
 						$("#modalNuevo").modal("show");
 					}
 				})
@@ -423,7 +420,7 @@
 			}).then((result) => {
 				if (result.isConfirmed) {
 					$.ajax({
-						url: "departamento/eliminar",
+						url: "aspirantes/eliminar",
 						type: "POST",
 						data: {
 							id: id
