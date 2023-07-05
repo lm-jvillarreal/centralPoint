@@ -51,7 +51,7 @@
 											<tr>
 												<th width='5%'>#</th>
 												<th width='40%'>Grupo</th>
-												<th width='40%'>Alumno.</th>
+												<th width='40%'>Alumno</th>
 											
 												
 											</tr>
@@ -82,14 +82,14 @@
 									<div class="row">
 										<div class="col-md-4">
 											<div class="form-group" id="id_grupo">
-												<label for="id_grupo" class="form-label">*id_grupo:</label>
+												<label for="txt_id_grupo" class="form-label">*id_grupo:</label>
 												<input type="number" name="txt_id_grupo" id="txt_id_grupo" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
 										<div class="col-md-3">
 											<div class="form-group" id="id_alumno">
-												<label for="id_alumno" class="form-label">*id_alumno:</label>
+												<label for="txt_id_alumno" class="form-label">*id_alumno:</label>
 												<input type="number" name="txt_id_alumno" id="txt_id_alumno" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
@@ -103,11 +103,6 @@
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
-										
-										
-										
-										
-									
 								</form>
 							</div>
 							<div class="modal-footer justify-content-between">
@@ -144,14 +139,12 @@
 		
 		$('#modalNuevo').on('hidden.bs.modal', function() {
 			$(this).find('frmNuevo').trigger('reset');
-			$("#Docente > div").html("");
-			$("#Docente > input").removeClass("is-invalid");
-			$("#Materia > div").html("");
-			$("#Materia > input").removeClass("is-invalid");
-			$("#fecharegistro > div").html("");
-			$("#fecharegistro > select").removeClass("is-invalid");
-			$("#horaregistro > div").html("");
-			$("#horaregistro > select").removeClass("is-invalid");
+			$("#id_grupo > div").html("");
+			$("#id_grupo > input").removeClass("is-invalid");
+			$("#id_alumno > div").html("");
+			$("#id_alumno > input").removeClass("is-invalid");
+			$("#txt_fechahora > div").html("");
+			$("#txt_fechahora > select").removeClass("is-invalid");
 			$("#activo > div").html("");
 			$("#activo > select").removeClass("is-invalid");
 			$("#usuario > div").html("");

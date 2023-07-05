@@ -98,18 +98,18 @@
 										<div class="col-md-3">
 											<div class="form-group" id="nivel">
 												<label for="txt_nivel" class="form-label">*Nivel:</label>
-												<input type="number" name="txt_nivel" id="txt_nivel" class="form-control">
-												<input type="hidden" name="txt_fechahora" id="txt_fechahora" class="form-control">
-												<input type="hidden" name="txt_activo" id="txt_activo" class="form-control">
-												<input type="hidden" name="txt_usuario" id="txt_usuario" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
 										
 										<div class="col-md-3">
 											<div class="form-group" id="id_docente">
-												<label for="id_docente" class="form-label">*#id_docente:</label>
+												<label for="txt_id_docente" class="form-label">*#id_docente:</label>
 												<input type="number" name="txt_id_docente" id="txt_id_docente" class="form-control">
+												<input type="number" name="txt_nivel" id="txt_nivel" class="form-control">
+												<input type="hidden" name="txt_fechahora" id="txt_fechahora" class="form-control">
+												<input type="hidden" name="txt_activo" id="txt_activo" class="form-control">
+												<input type="hidden" name="txt_usuario" id="txt_usuario" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
@@ -170,7 +170,7 @@
 		}
 
 		function Tabla() {
-			var tabla = $("#mCDIGrupos").DataTable({
+			var tabla = $("#grupos").DataTable({
 				"language": {
 					"url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
 				},
@@ -223,7 +223,7 @@
 				],
 				"ajax": {
 					type: "POST",
-					url: "mCDIGrupos/listar",
+					url: "grupos/listar",
 					dataSrc: "",
 					data: "",
 				},
@@ -247,8 +247,8 @@
 			});
 		}
 		$(document).ready(function() {
-			var table = $('#mCDIGrupos').DataTable();
-			$('#mCDIGrupos tbody').on('click', ' tr td:nth-child(1)', function() {
+			var table = $('#grupos').DataTable();
+			$('#grupos tbody').on('click', ' tr td:nth-child(1)', function() {
 				var rowIdx = table.row(this).index();
 				var id = table.cell(rowIdx, 0).data();
 				lanzarModal("editar", id);
