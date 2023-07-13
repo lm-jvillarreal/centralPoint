@@ -82,7 +82,7 @@ class planestudio extends BaseController{
 				$planestudios = $planestudios->insertarPlanEstudio($clave, $nombre);
 				echo json_encode(['msg' => 'insertado']);
 			}else if($id!=""){
-				$planestudios = $planestudios->editarPlanEstudio($id,$clave,$nombre);
+				$planestudios = $planestudios->editarPlanEstudio($id_planestudio, $clave,$nombre);
 				echo json_encode(['msg' => 'editado']);
 			}
 		}
@@ -90,8 +90,8 @@ class planestudio extends BaseController{
     public function eliminar()
     {
         $planestudios = new mCDIPlanEstudios();
-        $id=$this->request->getPost('id');
-        $planestudios=$planestudios->eliminarPlanEstudio($id);
+        $id_planesudio=$this->request->getPost('id');
+        $planestudios=$planestudios->eliminarPlanEstudio($id_planestudio);
         echo json_encode(["msg"=>"eliminado"]);
     }
 }

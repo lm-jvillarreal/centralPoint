@@ -3,22 +3,22 @@ namespace App\Controllers;
 
 use App\Database\Seeds\Usuario;
 use App\Libraries\Functions;
-use App\Models\mCDIPeriodo;
+use App\Models\mCDIPeriodos;
 use CodeIgniter\HTTP\Response;
 
-class periodo extends BaseController{
+class mCDIPeriodo1 extends BaseController{
     public function index(){
     }
     public function listar(){
-        $periodos=new mCDIPeriodo();
-        $periodos=$periodos->listarPeriodo();
+        $periodos=new mCDIPeriodos();
+        $periodos=$periodos->listarPeriodos();
         $data=[];
         foreach($periodos as $resultado){
             array_push($data,[
                 "id"=>$resultado["id"],
                 "periodo"=>$resultado["periodo"],
                 "fecha_inicio"=>$resultado["fecha_inicio"],
-                "fecha_fin"=>$resultado["fecha_fin"],
+                "fecha_fin"=>$resultado["fecha_fin"]
 			]);
         }
         echo json_encode($data);
@@ -87,22 +87,23 @@ class periodo extends BaseController{
 			$periodo = $this->request->getPost('txt_periodo');
             $fecha_inicio = $this->request->getPost('txt_fecha_inicio');
 			$fecha_fin = $this->request->getPost('txt_fecha_fin');
-			$periodos = new Departamentos();
+			$periodos = new mCDIPeriodos();
 			if($id==""){
 				$periodos = $periodos->insertarPeriodo($periodo,$fecha_inicio,$fecha_fin);
 				echo json_encode(['msg' => 'insertado']);
 			}else if($id!=""){
-				$periodos = $periodos->editarPeriodo($id,$periodo,$fecha_inicio,$fecha_fin);
+				$periodos = $periodos->editarPeriodo($id, $periodo,$fecha_inicio,$fecha_fin);
 				echo json_encode(['msg' => 'editado']);
 			}
 		}
     }
     public function eliminar()
     {
-        $periodos = new mCDIPeriodo();
+        $periodos = new mCDIPeriodos();
         $id=$this->request->getPost('id');
         $periodos=$periodos->eliminarPeriodo($id);
         echo json_encode(["msg"=>"eliminado"]);
+		//print_r[$periodos];
     }
 }
 ?>
