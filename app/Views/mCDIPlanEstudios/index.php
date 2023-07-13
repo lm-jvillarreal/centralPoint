@@ -50,7 +50,7 @@
 										<thead>
 											<tr>
 
-                                                <th width="8%">#</th>
+                                                <th width="4%">#</th>
 												<th width="8%">Clave</th>
                                                 <th width="8%">Nombre</th>
 										
@@ -88,13 +88,10 @@
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
-										<div class="col-md-4">
+										<div class="col-md-8">
 											<div class="form-group" id="nombre">
 												<label for="nombre" class="form-label">*Nombre:</label>
 												<input type="text" name="txt_nombre" id="txt_nombre" class="form-control">
-                                                <input type="hidden" name="txt_usuario" id="txt_usuario" class="form-control">
-                                                <input type="hidden" name="txt_activo" id="txt_activo" class="form-control">
-                                                <input type="hidden" name="txt_fechahora" id="txt_fechahora" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
@@ -131,43 +128,37 @@
 		$(document).ready(function() {
 			Tabla();
 		});
-		// $('#txt_nombre').select2({
-		// 	theme: 'bootstrap4',
-		// 	width: '100%',
-		// 	dropdownParent: $("#modalNuevo"),
-		// 	placeholder: 'Seleccione una opcion',
-		// 	lenguage: 'es',
-		// 	ajax: {
-		// 		url: "nombre/select",
-		// 		type: "post",
-		// 		dataType: 'json',
-		// 		delay: 250,
-		// 		data: function(params) {
-		// 			return {
-		// 				searchTerm: params.term // search term
-		// 			};
-		// 		},
-		// 		processResults: function(response) {
-		// 			return {
-		// 				results: response
-		// 			};
-		// 		},
-		// 		cache: true
-		// 	}
-		// });
-		$('#modalNuevo').on('hidden.bs.modal', function() {
-			$(this).find('frmNuevo').trigger('reset');
-			$("#clave > div").html("");
-			$("#clave > input").removeClass("is-invalid");
-			$("#nombre > div").html("");
-			$("#nombre > input").removeClass("is-invalid");
-			$("#fechahora > div").html("");
-			$("#fechahora > input").removeClass("is-invalid");
-            $("#activo > div").html("");
-			$("#activo > input").removeClass("is-invalid");
-            $("#usuario > div").html("");
-			$("#usuario > input").removeClass("is-invalid");
-		})
+
+		function removerClass(formulario) {
+            $(formulario + ' .form-group').each(function(index, obj) {
+                var id_group = $(formulario + " .form-group")[index].id;
+                var tipo_elemento = $(formulario + " .form-control")[index].tagName.toLowerCase();
+                $("#" + id_group + " >  div").html("");
+                $("#" + id_group + " > " + tipo_elemento).removeClass("is-invalid");
+            });
+        }
+
+        function limpiar(formulario) {
+            $(formulario + ' .form-group').each(function(index, obj) {
+                var id_group = $(formulario + " .form-group")[index].id;
+                var tipo_elemento = $(formulario + " .form-control")[index].tagName.toLowerCase();
+                $("#" + id_group + " >  div").html("");
+                $("#" + id_group + " > " + tipo_elemento).removeClass("is-invalid");
+                if (tipo_elemento == "input") {
+                    $("#" + id_group + " > " + tipo_elemento).val('');
+                } else if (tipo_elemento == "select") {
+                    $("#" + id_group + " > " + tipo_elemento).select2("trigger", "select", {
+                        data: {
+                            id: '',
+                            text: ''
+                        }
+                    });
+                }
+            });
+        }
+        $('#modalNuevo').on('hidden.bs.modal', function() {
+            limpiar('#frmNuevo');
+        })
 
 		function Tabla() {
 			var tabla = $("#planestudio").DataTable({
@@ -202,7 +193,7 @@
 								extend: 'pdf',
 								text: '<i class="fa fa-file-pdf"></i> PDF',
 								className: 'btn btn-default',
-								title: 'CategoriasModulos',
+								title: 'PlanEstudios',
 								exportOptions: {
 									columns: ':visible'
 								}
@@ -236,25 +227,18 @@
 					},
 					{
 						"data": "nombre"
-					},
-					// {
-					// 	"data": "fechahora"
-					// },
-                    // {
-					// 	"data": "activo"
-					// },
-                    // {
-					// 	"data": "usuario"
-					// },
+					}
 				]
 			});
 		}
 		$(document).ready(function() {
-			var table = $('#mCDIPlanEstudios').DataTable();
-			$('#mCDIPlanEstudios tbody').on('click', ' tr td:nth-child(1)', function() {
+			var table = $('#planestudio').DataTable();
+			$('#planestudio tbody').on('click', ' tr td:nth-child(1)', function() {
 				var rowIdx = table.row(this).index();
 				var id = table.cell(rowIdx, 0).data();
-				lanzarModal("editar", id);
+				var clave = table.cell(rowIdx, 1).data();
+                var nombre = table.cell(rowIdx, 2).data();
+				lanzarModal("editar", id, clave, nombre);
 			});
 		});
 		$("#btnGuardar").click(function() {
@@ -275,7 +259,7 @@
 				success: function(response) {
 					var resp = JSON.parse(response);
 					$("#modalNuevo").modal("toggle");
-					$('#mCDIPlanEstudios').DataTable().ajax.reload();
+					$('#planestudio').DataTable().ajax.reload();
 					if (resp.msg == "insertado") {
 						toastr.success('Registro agregado correctamente');
 					} else if (resp.msg == "editado") {
@@ -293,18 +277,6 @@
 							$("#nombre > div").html(resp.nombre);
 							$("#nombre > input").addClass("is-invalid");
 						}
-						// if (resp.fechahora != "") {
-						// 	$("#fechahora > div").html(resp.fechahora);
-						// 	$("#fechahora > input").addClass("is-invalid");
-						// }
-						// if (resp.activo != "") {
-						// 	$("#activo > div").html(resp.activo);
-						// 	$("#activo > input").addClass("is-invalid");
-						// }
-                        // if (resp.usuario != "") {
-						// 	$("#usuario > div").html(resp.usuario);
-						// 	$("#usuario > input").addClass("is-invalid");
-						// }
 					},
 					401: function(xhr) {
 
@@ -313,38 +285,23 @@
 			})
 		});
 
-		function lanzarModal(origen, id) {
+		function lanzarModal(origen, id, clave, nombre) {
 			if (origen == 'nuevo') {
 				$("#btnEliminar").css('display', 'none');
-				$("#id").val("");
-				$("#txt_clave").val("");
-				$("#txt_nombre").val("");
-				// $("#txt_fechahora").val("");
-                // $("#txt_activo").val("");
-                // $("#txt_usuario").val("");
+				limpiar('#frmNuevo');
+				// $("#id").val("");
+				// $("#txt_clave").val("");
+				// $("#txt_nombre").val("");
 				$("#modalNuevo").modal("show");
 				$("#titulo").html("Catálogo de Plan de Estudios | Nuevo Registro");
-			} else if (origen == 'editar') {
-				$.ajax({
-					url: "mCDIPlanEstudio/campos",
-					type: "POST",
-					data: {
-						id: id
-					},
-					success: function(response) {
-						var resp = JSON.parse(response);
-						$("#btnEliminar").removeAttr('style');
-						$("#id").val(resp.id);
-						$("#txt_clave").val(resp.clave);
-						$("#txt_nombre").val(resp.nombre);
-						// $("#txt_fechahora").val(resp.fechahora);
-                        // $("#txt_activo").val(resp.activo);
-                        // $("#txt_usuario").val(resp.usuario);
-						$("#titulo").html("Administración de Plan de Estudios | Editar Registro");
-						$("#modalNuevo").modal("show");
-					}
-				})
-			}
+			}  else if (origen == 'editar') {
+                $("#btnEliminar").removeAttr('style');
+                $("#id").val(id);
+                $("#txt_clave").val(clave);
+                $("#txt_nombre").val(nombre);
+                $("#modalNuevo").modal("show");
+                $("#titulo").html("Catalogo de Planes de Estudio | Editar Registro");
+            }
 		}
 		$("#btnEliminar").click(function() {
 			var id = $("#id").val();
