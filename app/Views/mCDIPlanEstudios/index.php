@@ -184,7 +184,7 @@
 								extend: 'excel',
 								text: '<i class="fa fa-file-excel"></i> Excel',
 								className: 'btn btn-default',
-								title: 'CategoriasModulos',
+								title: 'PlanEstudios',
 								exportOptions: {
 									columns: ':visible'
 								}
@@ -289,9 +289,6 @@
 			if (origen == 'nuevo') {
 				$("#btnEliminar").css('display', 'none');
 				limpiar('#frmNuevo');
-				// $("#id").val("");
-				// $("#txt_clave").val("");
-				// $("#txt_nombre").val("");
 				$("#modalNuevo").modal("show");
 				$("#titulo").html("Catálogo de Plan de Estudios | Nuevo Registro");
 			}  else if (origen == 'editar') {
@@ -325,7 +322,7 @@
 						success: function(response) {
 							var resp = JSON.parse(response);
 							$("#modalNuevo").modal("toggle");
-							$('#sedes').DataTable().ajax.reload();
+							$('#planestudio').DataTable().ajax.reload();
 							if (resp.msg == "eliminado") {
 								Swal.fire(
 									'Eliminado',

@@ -17,10 +17,10 @@ class mCDIPlanEstudios extends Model{
 	{
 		$planestudios = $this->db->table("mCDIPlanEstudios");
 		if($search==""){
-			$planestudios->select('id,clave,nombre');
+			$planestudios->select('id,clave');
 			$planestudios->where("activo",1);
 		}else{
-			$planestudios->select('id,clave,nombre');
+			$planestudios->select('id,clave');
 			$planestudios->where("activo",1);
 			$planestudios->like('nombre',$search);
 		}

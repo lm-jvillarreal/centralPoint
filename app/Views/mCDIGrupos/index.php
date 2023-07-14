@@ -23,12 +23,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Plan de Estudios</h1>
+                            <h1>Categorías de Grupos</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Administracon de Plan de estudios</a></li>
-                                <li class="breadcrumb-item active">Plan</li>
+                                <li class="breadcrumb-item"><a href="#">Centro de Idiomas</a></li>
+                                <li class="breadcrumb-item active">Categorías de Grupos</li>
                             </ol>
                         </div>
                     </div>
@@ -42,16 +42,18 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Catalogo de Planes de Estudio</h3>
+                                    <h3 class="card-title">Administración de Grupos</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="planestudio" class="table table-bordered table-striped">
+                                    <table id="grupos" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th width='4%'>#</th>
-                                                <th width='8%'>Clave</th>
-                                                <th width="8%">Nombre</th>
+                                                <th width='10%'>#</th>
+                                                <th width='20%'>Plan</th>
+                                                <th width='20%'>Perido</th>
+												<th width='20%'>Nivel</th>
+                                                <th width='20%'>Docente</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -68,39 +70,54 @@
                 <!-- /.container-fluid -->
                 <div class="modal fade" id="modalNuevo">
                     <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-							<div class="modal-header">
-								<h4 class="modal-title" id="titulo"></h4>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-							<form action="" method="POST" id="frmNuevo">
-									<div class="row">
-										<div class="col-md-4">
-											<div class="form-group" id="clave">
-												<label for="clave" class="form-label">*Clave:</label>
-												<input type="hidden" name="id" id="id">
-												<input type="text" name="txt_clave" id="txt_clave" class="form-control">
-												<div class="invalid-feedback"></div>
-											</div>
-										</div>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="titulo"></h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="" method="POST" id="frmNuevo">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group" id="Plan">
+                                                <label for="id_Plan" class="form-label">*Plan:</label>
+                                                <input type="hidden" name="id" id="id">
+                                                <input type="text" name="txt_id_Plan" id="txt_id_Plan" class="form-control">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group" id="periodo">
+                                                <label for="id_periodo" class="form-label">*Periodo</label>
+                                                <input type="text" name="txt_id_periodo" id="txt_id_periodo" class="form-control">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
 										<div class="col-md-8">
-											<div class="form-group" id="nombre">
-												<label for="nombre" class="form-label">*Nombre:</label>
-												<input type="text" name="txt_nombre" id="txt_nombre" class="form-control">
-												<div class="invalid-feedback"></div>
-											</div>
-										</div>
-								</form>
-							</div>
-							<div class="modal-footer justify-content-between">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-								<button type="button" id="btnEliminar" class="btn btn-danger ml-auto" style="display:none;">Eliminar</button>
-								<button type="button" class="btn btn-secondary" id="btnGuardar">Guardar informacion</button>
-							</div>
-						</div>
+                                            <div class="form-group" id="nivel">
+                                                <label for="nivel" class="form-label">*Nivel</label>
+                                                <input type="text" name="txt_nivel" id="txt_nivel" class="form-control">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
+										<div class="col-md-8">
+                                            <div class="form-group" id="docente">
+                                                <label for="id_docente" class="form-label">*Docente</label>
+                                                <input type="text" name="txt_id_docente" id="txt_id_docente" class="form-control">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                <button type="button" id="btnEliminar" class="btn btn-danger ml-auto" style="display:none;">Eliminar</button>
+                                <button type="button" class="btn btn-secondary" id="btnGuardar">Guardar Grupo</button>
+                            </div>
+                        </div>
                         <!-- /.modal-content -->
                     </div>
                     <!-- /.modal-dialog -->
@@ -159,7 +176,7 @@
         })
 
         function Tabla() {
-            var tabla = $("#planestudio").DataTable({
+            var tabla = $("#grupos").DataTable({
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
                 },
@@ -182,7 +199,7 @@
                                 extend: 'excel',
                                 text: '<i class="fa fa-file-excel"></i> Excel',
                                 className: 'btn btn-default',
-                                title: 'ListapLanEstudio',
+                                title: 'CategoriasModulos',
                                 exportOptions: {
                                     columns: ':visible'
                                 }
@@ -191,7 +208,7 @@
                                 extend: 'pdf',
                                 text: '<i class="fa fa-file-pdf"></i> PDF',
                                 className: 'btn btn-default',
-                                title: 'ListapLanEstudio',
+                                title: 'CategoriasModulos',
                                 exportOptions: {
                                     columns: ':visible'
                                 }
@@ -212,7 +229,7 @@
                 ],
                 "ajax": {
                     type: "POST",
-                    url: "mCDIPlanEstudio/listar",
+                    url: "mCDIGrupos/listar",
                     dataSrc: "",
                     data: "",
                 },
@@ -220,45 +237,43 @@
                         "data": "id"
                     },
                     {
-						"data": "clave"
-					},
-					{
-						"data": "nombre"
-					}
+                        "data": "id_Plan"
+                    },
+                    {
+                        "data": "id_periodo"
+                    },
+                    {
+                        "data": "nivel"
+                    },
+                    {
+                        "data": "id_docente"
+                    }
                 ]
             });
         }
         $(document).ready(function() {
-            var table = $('#planestudio').DataTable();
+            var table = $('#grupos').DataTable();
 
-            $('#planestudio tbody').on('click', ' tr td:nth-child(1)', function() {
+            $('#example1 tbody').on('click', ' tr td:nth-child(1)', function() {
                 var rowIdx = table.row(this).index();
-				var id = table.cell(rowIdx, 0).data();
-				var clave = table.cell(rowIdx, 1).data();
-                var nombre = table.cell(rowIdx, 2).data();
-				lanzarModal("editar", id, clave, nombre);
+                var id = table.cell(rowIdx, 0).data();
+                var Plan = table.cell(rowIdx, 1).data();
+                var Periodo = table.cell(rowIdx, 2).data();
+				var Nivel = table.cell(rowIdx, 3).data();
+                var Docente = table.cell(rowIdx, 4).data();
+                lanzarModal("editar", id, Plan, Periodo, Nivel, Docente);
             });
         });
         $("#btnGuardar").click(function() {
             removerClass("#frmNuevo");
-            $("#clave > div").html("");
-			$("#clave > input").removeClass("is-invalid");
-			$("#nombre > div").html("");
-			$("#nombre > input").removeClass("is-invalid");
-			$("#fechahora > div").html("");
-			$("#fechahora > input").removeClass("is-invalid");
-            $("#activo > div").html("");
-			$("#activo input").removeClass("is-invalid");
-            $("#usuario > div").html("");
-			$("#usuario input").removeClass("is-invalid");
             $.ajax({
-                url: "mCDIPlanEstudio/insertar",
+                url: "mCDIGrupos/insertar",
                 type: "POST",
                 data: $("#frmNuevo").serialize(),
                 success: function(response) {
                     var resp = JSON.parse(response);
                     $("#modalNuevo").modal("toggle");
-                    $('#mCDIPlanEstudio').DataTable().ajax.reload();
+                    $('#grupos').DataTable().ajax.reload();
                     if (resp.msg == "insertado") {
                         toastr.success('Registro agregado correctamente');
                     } else if (resp.msg == "editado") {
@@ -281,56 +296,22 @@
                 }
             })
         });
-        // function lanzarModal(origen, id) {
-		// 	if (origen == 'nuevo') {
-		// 		$("#btnEliminar").css('display', 'none');
-		// 		$("#id").val("");
-		// 		$("#txt_periodo").val("");
-		// 		$("#txt_periodo").val("");
-		// 		$("#txt_fecha_inicio").val("");
-        //         $("#txt_fecha_fin").val("");
-        //         $("#txt_fechahora").val("");
-        //         $("#txt_activo").val("");
-		// 		$("#txt_usuario").val("");
-		// 		$("#modalNuevo").modal("show");
-		// 		$("#titulo").html("Catálogo de Periodos | Nuevo Registro");
-		// 	} else if (origen == 'editar') {
-		// 		$.ajax({
-		// 			url: "mCDIPeriodo1/campos",
-		// 			type: "POST",
-		// 			data: {
-		// 				id: id
-		// 			},
-		// 			success: function(response) {
-		// 				var resp = JSON.parse(response);
-		// 				$("#btnEliminar").removeAttr('style');
-		// 				$("#id").val(resp.id);
-		// 				$("#txt_periodo").val(resp.periodo);
-		// 				$("#txt_fecha_inicio").val(resp.fecha_inicio);
-		// 				$("#txt_fecha_fin").val(resp.fecah_fin);
-        //                 $("#txt_fechahora").val(resp.fechahora);
-        //                 $("#txt_activo").val(resp.activo);
-        //                 $("#txt_usuario").val(resp.usuario);
-		// 				$("#titulo").html("Administración de Periodos | Editar Registro");
-		// 				$("#modalNuevo").modal("show");
-		// 			}
-		// 		})
-		// 	}
-		// }
 
-        function lanzarModal(origen, id, clave, nombre) {
+        function lanzarModal(origen, id, plan, periodo, nivel, docente) {
             if (origen == 'nuevo') {
                 $("#btnEliminar").css('display', 'none');
                 limpiar('#frmNuevo');
                 $("#modalNuevo").modal("show");
-                $("#titulo").html("Catalogo de Plan de estudios | Nuevo Registro");
+                $("#titulo").html("Categorías de Grupos | Nuevo Registro");
             } else if (origen == 'editar') {
                 $("#btnEliminar").removeAttr('style');
                 $("#id").val(id);
-                $("#txt_clave").val(clave);
-                $("#txt_nombre").val(nombre);
+                $("#txt_id_Plan").val(plan);
+                $("#txt_id_periodo").val(periodo);
+				$("#txt_nivel").val(nivel);
+                $("#txt_id_docente").val(docente);
                 $("#modalNuevo").modal("show");
-                $("#titulo").html("Catalogo de Plan de estudios | Editar Registro");
+                $("#titulo").html("Categorías de Grupos | Editar Registro");
             }
         }
         $("#btnEliminar").click(function() {
@@ -347,7 +328,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "mCDIPlanEstudio/eliminar",
+                        url: "mCDIGrupos/eliminar",
                         type: "POST",
                         data: {
                             id: id
@@ -355,7 +336,7 @@
                         success: function(response) {
                             var resp = JSON.parse(response);
                             $("#modalNuevo").modal("toggle");
-                            $('#mCDIPlanEstudio').DataTable().ajax.reload();
+                            $('#grupos').DataTable().ajax.reload();
                             if (resp.msg == "eliminado") {
                                 Swal.fire(
                                     'Eliminado',
