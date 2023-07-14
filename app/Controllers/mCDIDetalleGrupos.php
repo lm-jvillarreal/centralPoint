@@ -4,25 +4,24 @@ namespace App\Controllers;
 
 use App\Database\Seeds\Usuario;
 use App\Libraries\Functions;
+use App\Models\mCDIDetalleGrupo;
 use App\Models\mCDIGrupo;
 use CodeIgniter\HTTP\Response;
 
-class mCDIGrupos extends BaseController{
+class mCDIDetalleGrupos extends BaseController{
 
     public function index(){
 
     }
     public function listar(){
-        $grupos = new mCDIGrupo();
-        $grupos=$grupos->listarGrupos();
+        $detalle = new mCDIGrupo();
+        $detalle=$detalle->listarGrupo();
         $array=[];
-        foreach($grupos as $resultado){
+        foreach($detalle as $resultado){
             array_push($array,[
                 "id"=>$resultado["id"],
-                "id_Plan"=>$resultado["id_Plan"],
-                "id_periodo"=>$resultado["id_periodo"],
-                "nivel"=>$resultado["nivel"],
-                "id_docente"=>$resultado["id_docente"]
+                "id_grupo"=>$resultado["id_grupo"],
+                "id_alumno"=>$resultado["id_alumno"]
             ]);
         }
         echo json_encode($array);
@@ -31,7 +30,7 @@ class mCDIGrupos extends BaseController{
     public function select(){
         $grupos= new mCDIGrupo();
         $searchTerm=$this->request->getPost("searchTerm");
-        $grupos=$grupos->listarSelect($searchTerm);
+        $grupos=$grupos->listarSelects($searchTerm);
         $data=[];
         foreach($grupos as $resultado){
             $data[]=["id"=>$resultado['id'], "text"=>$resultado['id_Plan']];
@@ -45,50 +44,33 @@ class mCDIGrupos extends BaseController{
 		echo json_encode(
 			[
 				"id" => $grupos[0]['id'],
-				"id_Plan" => $grupos[0]['id_Plan'],
-				"id_periodo" => $grupos[0]['id_periodo'],
-				"nivel" => $grupos[0]['nivel'],
-				"id_docente" => $grupos[0]['id_docente']
+				"id_grupo" => $grupos[0]['id_Plan'],
+				"id_alumno" => $grupos[0]['id_periodo']
 			]
 			);
 	}
 
     public function insertar(){
 		if (!$this->validate([
-			'txt_id_Plan' => [
+			'txt_grupo' => [
 				'rules' => 'required',
 				'errors' => [
 					"required" => "Debes ingresar un nombre"
 				]
 			],
-			'txt_id_periodo' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => "Debes ingresar una descripción"
-				]
-			],
-			'txt_nivel' => [
-				'rules' => 'required',
-				'errors' => [
-					"required" => "Debes ingresar un nombre"
-				]
-			],
-			'txt_id_docente' => [
+			'txt_alumno' => [
 				'rules' => 'required',
 				'errors' => [
 					'required' => "Debes ingresar una descripción"
 				]
 			]
 		])) {
-			$plan = $this->validator->getError('txt_id_Plan');
-			$periodo = $this->validator->getError('txt_id_periodo');
-			$nivel = $this->validator->getError('txt_nivel');
-			$docente = $this->validator->getError('txt_id_docente');
+			$grupo = $this->validator->getError('txt_grupo');
+			$alumno = $this->validator->getError('txt_alumno');
+			
 			$errores = [
-				'id_Plan' => $plan,
-				'id_periodo' => $periodo,
-				'nivel' => $nivel,
-				'id_docente' => $docente
+				'id_grupo' => $grupo,
+				'id_alumno' => $alumno
 			];
 			echo json_encode($errores);
 			$response = service('response');
@@ -99,16 +81,14 @@ class mCDIGrupos extends BaseController{
 			$response->send();
 		} else {
 			$id=$this->request->getPost('id');
-			$plan = $this->request->getPost('txt_id_Plan');
-			$periodo = $this->request->getPost('txt_id_periodo');
-			$nivel = $this->request->getPost('txt_nivel');
-			$docente = $this->request->getPost('txt_id_docente');
+			$grupo = $this->request->getPost('txt_grupo');
+			$alumno = $this->request->getPost('txt_alumno');
 			$grupos = new mCDIGrupo();
 			if($id==""){
-				$grupos = $grupos->insertarGrupo($plan, $periodo, $nivel, $docente);
+				$grupos = $grupos->insertarGrupos($grupo, $alumno);
 				echo json_encode(['msg' => 'insertado']);
 			}else if($id!=""){
-				$grupos = $grupos->editarGrupo($id, $plan, $periodo, $nivel, $docente);
+				$grupos = $grupos->editarGrup($id, $grupo, $alumno);
 				echo json_encode(['msg' => 'editado']);
 			}
 		}
@@ -116,7 +96,7 @@ class mCDIGrupos extends BaseController{
     public function eliminar(){
 		$categorias = new mCDIGrupo();
 		$id=$this->request->getPost('id');
-		$categorias = $categorias->eliminarGrupo($id);
+		$categorias = $categorias->eliminarGrupos($id);
 		echo json_encode(['msg' => 'eliminado']);
 	}
 

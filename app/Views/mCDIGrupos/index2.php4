@@ -23,12 +23,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Administracion de Grupos</h1>
+                            <h1>Categorías de Grupos</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Grupos</a></li>
-                                <li class="breadcrumb-item active">Administracion de Grupos</li>
+                                <li class="breadcrumb-item"><a href="#">Centro de Idiomas</a></li>
+                                <li class="breadcrumb-item active">Categorías de Grupos</li>
                             </ol>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <table id="grupos" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th width='10%'>#</th>
@@ -78,7 +78,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                            <form action="" method="POST" id="frmNuevo">
+                                <form action="" method="POST" id="frmNuevo">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group" id="Plan">
@@ -176,7 +176,7 @@
         })
 
         function Tabla() {
-            var tabla = $("#example1").DataTable({
+            var tabla = $("#grupos").DataTable({
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
                 },
@@ -248,12 +248,11 @@
                     {
                         "data": "id_docente"
                     }
-                   
                 ]
             });
         }
         $(document).ready(function() {
-            var table = $('#example1').DataTable();
+            var table = $('#grupos').DataTable();
 
             $('#example1 tbody').on('click', ' tr td:nth-child(1)', function() {
                 var rowIdx = table.row(this).index();
@@ -274,7 +273,7 @@
                 success: function(response) {
                     var resp = JSON.parse(response);
                     $("#modalNuevo").modal("toggle");
-                    $('#example1').DataTable().ajax.reload();
+                    $('#grupos').DataTable().ajax.reload();
                     if (resp.msg == "insertado") {
                         toastr.success('Registro agregado correctamente');
                     } else if (resp.msg == "editado") {
@@ -303,7 +302,7 @@
                 $("#btnEliminar").css('display', 'none');
                 limpiar('#frmNuevo');
                 $("#modalNuevo").modal("show");
-                $("#titulo").html("Categorías de módulos | Nuevo Registro");
+                $("#titulo").html("Categorías de Grupos | Nuevo Registro");
             } else if (origen == 'editar') {
                 $("#btnEliminar").removeAttr('style');
                 $("#id").val(id);
@@ -312,7 +311,7 @@
 				$("#txt_nivel").val(nivel);
                 $("#txt_id_docente").val(docente);
                 $("#modalNuevo").modal("show");
-                $("#titulo").html("Categorías de módulos | Editar Registro");
+                $("#titulo").html("Categorías de Grupos | Editar Registro");
             }
         }
         $("#btnEliminar").click(function() {
@@ -337,7 +336,7 @@
                         success: function(response) {
                             var resp = JSON.parse(response);
                             $("#modalNuevo").modal("toggle");
-                            $('#example1').DataTable().ajax.reload();
+                            $('#grupos').DataTable().ajax.reload();
                             if (resp.msg == "eliminado") {
                                 Swal.fire(
                                     'Eliminado',
