@@ -84,14 +84,16 @@
                                             <div class="form-group" id="Plan">
                                                 <label for="id_Plan" class="form-label">*Plan:</label>
                                                 <input type="hidden" name="id" id="id">
-                                                <input type="text" name="txt_id_Plan" id="txt_id_Plan" class="form-control">
+                                                <!-- type="text"  iva abajo antes del name -->
+                                                <input  name="txt_id_Plan" id="txt_id_Plan" class="form-control">
                                                 <div class="invalid-feedback"></div>
                                             </div>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="form-group" id="periodo">
                                                 <label for="id_periodo" class="form-label">*Periodo</label>
-                                                <input type="text" name="txt_id_periodo" id="txt_id_periodo" class="form-control">
+                                                <!-- type="text" va abajo antes del name -->
+                                                <input  name="txt_id_periodo" id="txt_id_periodo" class="form-control">
                                                 <div class="invalid-feedback"></div>
                                             </div>
                                         </div>
@@ -143,7 +145,65 @@
         $(document).ready(function() {
             Tabla();
         });
-
+        function removerClass() {
+			$("#Plan > div").html("");
+			$("#Plan > select").removeClass("is-invalid");
+			$("#periodo > div").html("");
+			$("#periodo > select").removeClass("is-invalid");
+			$("#nivel > div").html("");
+			$("#nivel > input").removeClass("is-invalid");
+			$("#docente > div").html("");
+			$("#docente > select").removeClass("is-invalid");
+			
+		}
+        $('#txt_id_Plan').select2({
+			theme: 'bootstrap4',
+			width: '100%',
+			dropdownParent: $("#modalNuevo"),
+			placeholder: 'Seleccione una opcion',
+			lenguage: 'es',
+			ajax: {
+				url: "mCDIGrupos/select",
+				type: "post",
+				dataType: 'json',
+				delay: 250,
+				data: function(params) {
+					return {
+						searchTerm: params.term // search term
+					};
+				},
+				processResults: function(response) {
+					return {
+						results: response
+					};
+				},
+				cache: true
+			}
+		});
+        $('#txt_id_periodo').select2({
+			theme: 'bootstrap4',
+			width: '100%',
+			dropdownParent: $("#modalNuevo"),
+			placeholder: 'Seleccione una opcion',
+			lenguage: 'es',
+			ajax: {
+				url: "mCDIGrupos/select",
+				type: "post",
+				dataType: 'json',
+				delay: 250,
+				data: function(params) {
+					return {
+						searchTerm: params.term // search term
+					};
+				},
+				processResults: function(response) {
+					return {
+						results: response
+					};
+				},
+				cache: true
+			}
+		});
         function removerClass(formulario) {
             $(formulario + ' .form-group').each(function(index, obj) {
                 var id_group = $(formulario + " .form-group")[index].id;

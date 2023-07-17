@@ -9,8 +9,10 @@ use CodeIgniter\Model;
 class mCDIGrupo extends Model{
 
     public function listarGrupos(){
-        $grupos=$this->db->table("mCDIGrupos");
-        $grupos->select("id, id_Plan, id_periodo, nivel, id_docente");
+        $grupos=$this->db->table("mCDIGrupos as G");
+        $grupos->select("G.id, G.nivel, G.id_docente");
+        $grupos->select("(SELECT nombre FROM mCDIPlanEstudios WHERE id=G.id_Plan) As id_Plan");
+        $grupos->select("(SELECT periodo FROM mCDIPeriodos WHERE id=G.id_periodo) As id_periodo");
         $grupos->where("ACTIVO",1);
         return $grupos->get()->getResultArray();
     }
@@ -18,12 +20,12 @@ class mCDIGrupo extends Model{
     public function listarSelect($search){
         $grupos=$this->db->table("mCDIGrupos");
         if($search==""){
-            $grupos->select("id, id_Plan, id_periodo, nivel, id_docente");
+            $grupos->select("id, Nombre");
             $grupos->where("ACTIVO",1);
         }else{
-            $grupos->select("id, id_Plan, id_periodo, nivel, id_docente");
+            $grupos->select("id, Nombre");
             $grupos->where("activo",1);
-            $grupos->like("id_Plan",$search);
+            $grupos->like("Nombre",$search);
         }
         return $grupos->get()->getResultArray();
     }
@@ -70,7 +72,8 @@ class mCDIGrupo extends Model{
     //Detalle
     public function listarGrupo(){
         $detalle=$this->db->table("mCDIdetalle_grupo");
-        $detalle->select("id, id_grupo, id_alumno");
+        $detalle->select("id, id_alumno");
+        $detalle->select("(SELECT nivel FROM mCDIGrupos WHERE id=id_grupo) AS id_grupo");
         $detalle->where("activo",1);
         return $detalle->get()->getResultArray();
     }

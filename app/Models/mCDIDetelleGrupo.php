@@ -8,6 +8,7 @@ use CodeIgniter\Model;
 
 class mCDIDetalleGrupo extends Model{
 
+    //Detalle
     public function listarGrupo(){
         $detalle=$this->db->table("mCDIdetalle_grupo");
         $detalle->select("id, id_grupo, id_alumno");
@@ -48,7 +49,7 @@ class mCDIDetalleGrupo extends Model{
     public function editarGrup($id, $grupo, $alumno){
         $grupos=$this->db->table("mCDIdetalle_grupo");
         $grupos->set("id_grupo",$grupo);
-        $grupos->set("id_periodo",$alumno);
+        $grupos->set("id_alumno",$alumno);
         $grupos->set("fechahora",date("Y-m-d H:i:s"));
         $grupos->where("id",$id);
         $grupos->update();
