@@ -48,11 +48,12 @@
                                 <div class="card-body">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
+                                            <!-- class="text-center" -->
                                             <tr>
-                                                <th width='4%'>#</th>
-                                                <th width='8%'>Periodo</th>
-                                                <th width="8%">Fecha incial del periodo</th>
-                                                <th width="8%">Fecha final del periodo</th>
+                                                <th width='2%'>#</th>
+                                                <th width='4%'>Periodo</th>
+                                                <th width="4%">Fecha incial del periodo</th>
+                                                <th width="4%">Fecha final del periodo</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>

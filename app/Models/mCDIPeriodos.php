@@ -34,6 +34,7 @@ class mCDIPeriodos extends Model{
     }
     public function insertarPeriodo($periodo, $fecha_inicio, $fecha_fin){
         $periodos=$this->db->table("mCDIPeriodos");
+        $periodos->where("activo", 1)->update(["activo" => 0]);
         $datos=[
             "periodo"=>$periodo,
             "fecha_inicio"=>$fecha_inicio,
@@ -43,6 +44,9 @@ class mCDIPeriodos extends Model{
         ];
         $periodos->insert($datos);
     }
+
+
+    
     public function editarPeriodo($id_periodo,$periodo,$fecha_inicio,$fecha_fin){
         $periodos=$this->db->table("mCDIPeriodos");
         $periodos->set("periodo",$periodo);
