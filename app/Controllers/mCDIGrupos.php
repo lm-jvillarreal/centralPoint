@@ -28,13 +28,23 @@ class mCDIGrupos extends BaseController{
         echo json_encode($array);
     }
 
-    public function select(){
+    public function select1(){
         $grupos= new mCDIGrupo();
         $searchTerm=$this->request->getPost("searchTerm");
-        $grupos=$grupos->listarSelect($searchTerm);
+        $grupos=$grupos->listarSelect1($searchTerm);
         $data=[];
         foreach($grupos as $resultado){
-            $data[]=["id"=>$resultado['id'], "text"=>$resultado['id_Plan']];
+            $data[]=["id"=>$resultado['id'], "text"=>$resultado['nombre']];
+        }
+        echo json_encode($data);
+    }
+	public function select2(){
+        $grupos= new mCDIGrupo();
+        $searchTerm=$this->request->getPost("searchTerm");
+        $grupos=$grupos->listarSelect2($searchTerm);
+        $data=[];
+        foreach($grupos as $resultado){
+            $data[]=["id"=>$resultado['id'], "text"=>$resultado['periodo']];
         }
         echo json_encode($data);
     }

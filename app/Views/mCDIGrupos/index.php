@@ -85,7 +85,8 @@
                                                 <label for="id_Plan" class="form-label">*Plan:</label>
                                                 <input type="hidden" name="id" id="id">
                                                 <!-- type="text"  iva abajo antes del name -->
-                                                <input  name="txt_id_Plan" id="txt_id_Plan" class="form-control">
+                                                <select name="txt_id_Plan" id="txt_id_Plan" class="form-control"></select>
+                                               
                                                 <div class="invalid-feedback"></div>
                                             </div>
                                         </div>
@@ -93,7 +94,8 @@
                                             <div class="form-group" id="periodo">
                                                 <label for="id_periodo" class="form-label">*Periodo</label>
                                                 <!-- type="text" va abajo antes del name -->
-                                                <input  name="txt_id_periodo" id="txt_id_periodo" class="form-control">
+                                                <select name="txt_id_periodo" id="txt_id_periodo" class="form-control"></select>
+                                                
                                                 <div class="invalid-feedback"></div>
                                             </div>
                                         </div>
@@ -156,6 +158,10 @@
 			$("#docente > select").removeClass("is-invalid");
 			
 		}
+        $('#modalNuevo').on('hidden.bs.modal', function() {
+			$(this).find('frmNuevo').trigger('reset');
+			removerClass();
+		});
         $('#txt_id_Plan').select2({
 			theme: 'bootstrap4',
 			width: '100%',
@@ -163,7 +169,7 @@
 			placeholder: 'Seleccione una opcion',
 			lenguage: 'es',
 			ajax: {
-				url: "mCDIGrupos/select",
+				url: "mCDIGrupos/select1",
 				type: "post",
 				dataType: 'json',
 				delay: 250,
@@ -187,7 +193,7 @@
 			placeholder: 'Seleccione una opcion',
 			lenguage: 'es',
 			ajax: {
-				url: "mCDIGrupos/select",
+				url: "mCDIGrupos/select2",
 				type: "post",
 				dataType: 'json',
 				delay: 250,

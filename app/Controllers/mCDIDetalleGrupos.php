@@ -33,7 +33,7 @@ class mCDIDetalleGrupos extends BaseController{
         $grupos=$grupos->listarSelects($searchTerm);
         $data=[];
         foreach($grupos as $resultado){
-            $data[]=["id"=>$resultado['id'], "text"=>$resultado['id_Plan']];
+            $data[]=["id"=>$resultado['id'], "text"=>$resultado['nivel']];
         }
         echo json_encode($data);
     }

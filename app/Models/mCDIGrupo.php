@@ -17,15 +17,27 @@ class mCDIGrupo extends Model{
         return $grupos->get()->getResultArray();
     }
     
-    public function listarSelect($search){
-        $grupos=$this->db->table("mCDIGrupos");
+    public function listarSelect1($search){
+        $grupos=$this->db->table("mCDIPlanEstudios");
         if($search==""){
-            $grupos->select("id, Nombre");
-            $grupos->where("ACTIVO",1);
-        }else{
-            $grupos->select("id, Nombre");
+            $grupos->select("id, nombre");
             $grupos->where("activo",1);
-            $grupos->like("Nombre",$search);
+        }else{
+            $grupos->select("id, nombre");
+            $grupos->where("activo",1);
+            $grupos->like("nombre",$search);
+        }
+        return $grupos->get()->getResultArray();
+    }
+    public function listarSelect2($search){
+        $grupos=$this->db->table("mCDIPeriodos");
+        if($search==""){
+            $grupos->select("id, periodo");
+            $grupos->where("activo",1);
+        }else{
+            $grupos->select("id, periodo");
+            $grupos->where("activo",1);
+            $grupos->like("periodo",$search);
         }
         return $grupos->get()->getResultArray();
     }
@@ -78,14 +90,14 @@ class mCDIGrupo extends Model{
         return $detalle->get()->getResultArray();
     }
     public function listarSelects($search){
-        $grupos=$this->db->table("mCDIdetalle_grupo");
+        $grupos=$this->db->table("mCDIGrupos");
         if($search==""){
-            $grupos->select("id, id_grupo, id_alumno");
+            $grupos->select("id, nivel");
             $grupos->where("activo",1);
         }else{
-            $grupos->select("id, id_grupo, id_alumno");
+            $grupos->select("id, nivel");
             $grupos->where("activo",1);
-            $grupos->like("id_Plan",$search);
+            $grupos->like("nivel",$search);
         }
         return $grupos->get()->getResultArray();
     }

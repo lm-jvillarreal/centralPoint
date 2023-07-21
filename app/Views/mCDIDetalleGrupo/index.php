@@ -83,7 +83,7 @@
                                                 <label for="id_grupo" class="form-label">*Grupo:</label>
                                                 <input type="hidden" name="id" id="id">
                                                 <!-- type="text" iva abajo antes del name -->
-                                                <input  name="txt_grupo" id="txt_grupo" class="form-control">
+                                                <select  name="txt_grupo" id="txt_grupo" class="form-control"></select>
                                                 <div class="invalid-feedback"></div>
                                             </div>
                                         </div>
@@ -160,30 +160,30 @@
 				cache: true
 			}
 		});
-        $('#txt_alumno').select2({
-			theme: 'bootstrap4',
-			width: '100%',
-			dropdownParent: $("#modalNuevo"),
-			placeholder: 'Seleccione una opcion',
-			lenguage: 'es',
-			ajax: {
-				url: "mCDIDetalleGrupos/select",
-				type: "post",
-				dataType: 'json',
-				delay: 250,
-				data: function(params) {
-					return {
-						searchTerm: params.term // search term
-					};
-				},
-				processResults: function(response) {
-					return {
-						results: response
-					};
-				},
-				cache: true
-			}
-		});
+        // $('#txt_alumno').select2({
+		// 	theme: 'bootstrap4',
+		// 	width: '100%',
+		// 	dropdownParent: $("#modalNuevo"),
+		// 	placeholder: 'Seleccione una opcion',
+		// 	lenguage: 'es',
+		// 	ajax: {
+		// 		url: "mCDIDetalleGrupos/select",
+		// 		type: "post",
+		// 		dataType: 'json',
+		// 		delay: 250,
+		// 		data: function(params) {
+		// 			return {
+		// 				searchTerm: params.term // search term
+		// 			};
+		// 		},
+		// 		processResults: function(response) {
+		// 			return {
+		// 				results: response
+		// 			};
+		// 		},
+		// 		cache: true
+		// 	}
+		// });
 
         function removerClass(formulario) {
             $(formulario + ' .form-group').each(function(index, obj) {
