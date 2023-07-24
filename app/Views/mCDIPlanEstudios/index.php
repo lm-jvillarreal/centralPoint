@@ -51,8 +51,8 @@
 											<tr>
 
                                                 <th width="4%">#</th>
-												<th width="8%">Clave</th>
-                                                <th width="8%">Nombre</th>
+												<th width="4%">Clave</th>
+                                                <th width="4%">Nombre</th>
 										
 											</tr>
 										</thead>

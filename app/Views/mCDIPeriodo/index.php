@@ -93,7 +93,7 @@
 										<div class="col-md-4">
 											<div  class="form-group" id="fecha_inicio">
 											  <label for="fecha_inicio" class="form-label">*Fecha inicial del periodo:</label>
-											  <input type="date" name="txt_fecha_inicio" id="txt_fecha_inicio" class="form-control">
+											  <input type="date" name="txt_fecha_inicio"  id="txt_fecha_inicio" class="form-control">
 											  <div class="invalid-feedback"></div>
 											</div>
 										</div>
@@ -101,22 +101,40 @@
 										<div class="col-md-4">
 											<div class="form-group" id="fecha_fin">
 												<label for="fecha_fin" class="form-label">*Fecha final del periodo:</label>
-												<input type="date" name="txt_fecha_fin" id="txt_fecha_fin" class="form-control">
+												<input type="date" name="txt_fecha_fin"  id="txt_fecha_fin" class="form-control" >
+
 
 						
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
+                                        
+
+                                    <!-- <script>
+                                        function ValidarFechas() {
+                                            var txt_fecha_inicio = document.getElementById("txt_fecha_inicio").value;
+                                            var txt_fecha_fin = document.getElementById("txt_fecha_fin").value;
+
+                                            if (Date.parse(txt_fecha_fin) < Date.parse(txt_fecha_inicio)) {
+                                                alert("La fecha final debe ser mayor a la fecha inicial");
+                                                return false; 
+                                            }
+                                            return true;
+                                        }
+                                    </script> -->
+
 									</div>
 								</form>
 							</div>
 							<div class="modal-footer justify-content-between">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 								<button type="button" id="btnEliminar" class="btn btn-danger ml-auto" style="display:none;">Eliminar</button>
-								<button type="button" class="btn btn-secondary" id="btnGuardar">Guardar informacion</button>
+								<button type="button"   class="btn btn-secondary" id="btnGuardar">Guardar informacion</button>
+
+                                <!-- donde tienes la funcionalidad del boton guardar ?? -->
 							</div>
 						</div>
-                        <!-- /.modal-content -->
+                        <!-- /.modal-content --
                     </div>
                     <!-- /.modal-dialog -->
                 </div>
@@ -258,7 +276,27 @@
                 lanzarModal("editar", id, periodo, fecha_inicio, fecha_fin);
             });
         });
+        //aqiiiiiiiiiiiiiiiiiii
+        function ValidarFechas() {
+            var txt_fecha_inicio = document.getElementById("txt_fecha_inicio").value;
+            var txt_fecha_fin = document.getElementById("txt_fecha_fin").value;
+
+            if (Date.parse(txt_fecha_fin) < Date.parse(txt_fecha_inicio)) {
+                alert("La fecha final debe ser mayor a la fecha inicial");
+                 return false; 
+            }
+               return true;
+        }
+
+        // Para validar ña funcion dentro del boton guardar
+
+
+        // es todo esto tttootot
         $("#btnGuardar").click(function() {
+            if (!ValidarFechas()) {
+        return; // Si la validación falla, detenemos la ejecución del evento de clic del botón.
+    }
+else{
             removerClass("#frmNuevo");
             $("#periodo > div").html("");
 			$("#periodo > input").removeClass("is-invalid");
@@ -272,6 +310,8 @@
 			$("#activo input").removeClass("is-invalid");
             $("#usuario > div").html("");
 			$("#usuario input").removeClass("is-invalid");
+
+
             $.ajax({
                 url: "mCDIPeriodo1/insertar",
                 type: "POST",
@@ -301,6 +341,7 @@
                     }
                 }
             })
+        }
         });
         // function lanzarModal(origen, id) {
 		// 	if (origen == 'nuevo') {
