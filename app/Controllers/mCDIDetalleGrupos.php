@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Database\Seeds\Usuario;
 use App\Libraries\Functions;
 use App\Models\mCDIDetalleGrupo;
-use App\Models\mCDIGrupo;
+use App\Models\mCDIDetalleG;
 use CodeIgniter\HTTP\Response;
 
 class mCDIDetalleGrupos extends BaseController{
@@ -14,7 +14,7 @@ class mCDIDetalleGrupos extends BaseController{
 
     }
     public function listar(){
-        $detalle = new mCDIGrupo();
+        $detalle = new mCDIDetalleG();
         $detalle=$detalle->listarGrupo();
         $array=[];
         foreach($detalle as $resultado){
@@ -28,7 +28,7 @@ class mCDIDetalleGrupos extends BaseController{
     }
 
     public function select(){
-        $grupos= new mCDIGrupo();
+        $grupos= new mCDIDetalleG();
         $searchTerm=$this->request->getPost("searchTerm");
         $grupos=$grupos->listarSelects($searchTerm);
         $data=[];
@@ -38,7 +38,7 @@ class mCDIDetalleGrupos extends BaseController{
         echo json_encode($data);
     }
 	public function campos(){
-		$grupos= new mCDIGrupo();
+		$grupos= new mCDIDetalleG();
 		$id=$this->request->getPost('id');
 		$grupos=$grupos->camposGrupos($id);
 		echo json_encode(
@@ -83,7 +83,7 @@ class mCDIDetalleGrupos extends BaseController{
 			$id=$this->request->getPost('id');
 			$grupo = $this->request->getPost('txt_grupo');
 			$alumno = $this->request->getPost('txt_alumno');
-			$grupos = new mCDIGrupo();
+			$grupos = new mCDIDetalleG();
 			if($id==""){
 				$grupos = $grupos->insertarGrupos($grupo, $alumno);
 				echo json_encode(['msg' => 'insertado']);
@@ -94,7 +94,7 @@ class mCDIDetalleGrupos extends BaseController{
 		}
 	}
     public function eliminar(){
-		$categorias = new mCDIGrupo();
+		$categorias = new mCDIDetalleG();
 		$id=$this->request->getPost('id');
 		$categorias = $categorias->eliminarGrupos($id);
 		echo json_encode(['msg' => 'eliminado']);

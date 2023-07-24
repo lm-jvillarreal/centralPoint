@@ -6,24 +6,27 @@ use App\Libraries\Functions;
 use CodeIgniter\HTTP\Response;
 use CodeIgniter\Model;
 
-class mCDIDetalleGrupo extends Model{
+class mCDIDetalleG extends Model{
+
+   
 
     //Detalle
     public function listarGrupo(){
         $detalle=$this->db->table("mCDIdetalle_grupo");
-        $detalle->select("id, id_grupo, id_alumno");
+        $detalle->select("id, id_alumno");
+        $detalle->select("(SELECT nivel FROM mCDIGrupos WHERE id=id_grupo) AS id_grupo");
         $detalle->where("activo",1);
         return $detalle->get()->getResultArray();
     }
     public function listarSelects($search){
-        $grupos=$this->db->table("mCDIdetalle_grupo");
+        $grupos=$this->db->table("mCDIGrupos");
         if($search==""){
-            $grupos->select("id, id_grupo, id_alumno");
+            $grupos->select("id, nivel");
             $grupos->where("activo",1);
         }else{
-            $grupos->select("id, id_grupo, id_alumno");
+            $grupos->select("id, nivel");
             $grupos->where("activo",1);
-            $grupos->like("id_Plan",$search);
+            $grupos->like("nivel",$search);
         }
         return $grupos->get()->getResultArray();
     }
@@ -61,6 +64,10 @@ class mCDIDetalleGrupo extends Model{
         $grupos->where("id",$id);
         $grupos->update();
     }
+
 }
+
+
+
 
 ?>
