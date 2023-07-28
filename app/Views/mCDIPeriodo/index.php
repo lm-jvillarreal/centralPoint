@@ -282,7 +282,11 @@
             var txt_fecha_fin = document.getElementById("txt_fecha_fin").value;
 
             if (Date.parse(txt_fecha_fin) < Date.parse(txt_fecha_inicio)) {
-                alert("La fecha final debe ser mayor a la fecha inicial");
+                Swal.fire(
+                                    'Error',
+                                    'La fecha final no pude anterior a la fecha inicial',
+                                    'error'
+                                )
                  return false; 
             }
                return true;
