@@ -49,11 +49,11 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th width='10%'>#</th>
-                                                <th width='20%'>Plan</th>
-                                                <th width='20%'>Perido</th>
-												<th width='20%'>Nivel</th>
-                                                <th width='20%'>Docente</th>
+                                                <th width='5%'>#</th>
+                                                <th width='15%'>Plan</th>
+                                                <th width='15%'>Perido</th>
+												<th width='15%'>Nivel</th>
+                                                <th width='50%'>Docente</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -109,7 +109,7 @@
 										<div class="col-md-8">
                                             <div class="form-group" id="docente">
                                                 <label for="id_docente" class="form-label">*Docente</label>
-                                                <input type="text" name="txt_id_docente" id="txt_id_docente" class="form-control">
+                                                <select type="text" name="txt_id_docente" id="txt_id_docente" class="form-control"></select>
                                                 <div class="invalid-feedback"></div>
                                             </div>
                                         </div>
@@ -194,6 +194,30 @@
 			lenguage: 'es',
 			ajax: {
 				url: "mCDIGrupos/select2",
+				type: "post",
+				dataType: 'json',
+				delay: 250,
+				data: function(params) {
+					return {
+						searchTerm: params.term // search term
+					};
+				},
+				processResults: function(response) {
+					return {
+						results: response
+					};
+				},
+				cache: true
+			}
+		});
+        $('#txt_id_docente').select2({
+			theme: 'bootstrap4',
+			width: '100%',
+			dropdownParent: $("#modalNuevo"),
+			placeholder: 'Seleccione una opcion',
+			lenguage: 'es',
+			ajax: {
+				url: "mCDIGrupos/select3",
 				type: "post",
 				dataType: 'json',
 				delay: 250,

@@ -48,6 +48,27 @@ class mCDIGrupos extends BaseController{
         }
         echo json_encode($data);
     }
+	public function select3() {
+		// Crear una instancia del modelo mCDIGrupo
+		$grupoModel = new mCDIGrupo();
+	
+		// Obtener el término de búsqueda enviado desde el cliente
+		$searchTerm = $this->request->getPost("searchTerm");
+	
+		// Llamar a la función listarSelect3() del modelo para obtener los resultados
+		$grupos = $grupoModel->listarSelect3($searchTerm);
+	
+		// Preparar los datos para la respuesta JSON
+		$data = [];
+		foreach ($grupos as $resultado) {
+			$nombreCompleto = $resultado['NOMBRE'] . ' ' . $resultado['AP_PATERNO'] . ' ' . $resultado['AP_mATERNO'];
+			$data[] = ["id" => $resultado['id'], "text" => $nombreCompleto];
+		}
+	
+		// Devolver la respuesta JSON
+		return $this->response->setJSON($data);
+	}
+	
 	public function campos(){
 		$grupos= new mCDIGrupo();
 		$id=$this->request->getPost('id');
