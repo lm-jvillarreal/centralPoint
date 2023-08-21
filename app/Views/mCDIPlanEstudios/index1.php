@@ -23,12 +23,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Periodos</h1>
+                            <h1>Plan de Estudios</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Administracon de Periodos</a></li>
-                                <li class="breadcrumb-item active">Periodos</li>
+                                <li class="breadcrumb-item"><a href="#">Administracon de Plan de estudios</a></li>
+                                <li class="breadcrumb-item active">Plan</li>
                             </ol>
                         </div>
                     </div>
@@ -42,18 +42,16 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Catalogo de Periodos</h3>
+                                    <h3 class="card-title">Catalogo de Planes de Estudio</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <table id="planestudio" class="table table-bordered table-striped">
                                         <thead>
-                                            <!-- class="text-center" -->
                                             <tr>
-                                                <th width='2%'>#</th>
-                                                <th width='4%'>Periodo</th>
-                                                <th width="4%">Fecha incial del periodo</th>
-                                                <th width="4%">Fecha final del periodo</th>
+                                                <th width='4%'>#</th>
+                                                <th width='8%'>Clave</th>
+                                                <th width="8%">Nombre</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -80,61 +78,30 @@
 							<div class="modal-body">
 							<form action="" method="POST" id="frmNuevo">
 									<div class="row">
-										<div class="col-md-8">
-											<div class="form-group" id="periodo">
-												<label for="periodo" class="form-label">*Periodo:</label>
+										<div class="col-md-4">
+											<div class="form-group" id="clave">
+												<label for="clave" class="form-label">*Clave:</label>
 												<input type="hidden" name="id" id="id">
-												<input type="text" name="txt_periodo" id="txt_periodo" class="form-control">
+												<input type="text" name="txt_clave" id="txt_clave" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-4">
-											<div  class="form-group" id="fecha_inicio">
-											  <label for="fecha_inicio" class="form-label">*Fecha inicial del periodo:</label>
-											  <input type="date" name="txt_fecha_inicio"  id="txt_fecha_inicio" class="form-control">
-											  <div class="invalid-feedback"></div>
-											</div>
-										</div>
-										<!-- <h1>>_<</h1> -->
-										<div class="col-md-4">
-											<div class="form-group" id="fecha_fin">
-												<label for="fecha_fin" class="form-label">*Fecha final del periodo:</label>
-												<input type="date" name="txt_fecha_fin"  id="txt_fecha_fin" class="form-control" >
-
-
-						
+										<div class="col-md-8">
+											<div class="form-group" id="nombre">
+												<label for="nombre" class="form-label">*Nombre:</label>
+												<input type="text" name="txt_nombre" id="txt_nombre" class="form-control">
 												<div class="invalid-feedback"></div>
 											</div>
 										</div>
-                                        
-
-                                    <!-- <script>
-                                        function ValidarFechas() {
-                                            var txt_fecha_inicio = document.getElementById("txt_fecha_inicio").value;
-                                            var txt_fecha_fin = document.getElementById("txt_fecha_fin").value;
-
-                                            if (Date.parse(txt_fecha_fin) < Date.parse(txt_fecha_inicio)) {
-                                                alert("La fecha final debe ser mayor a la fecha inicial");
-                                                return false; 
-                                            }
-                                            return true;
-                                        }
-                                    </script> -->
-
-									</div>
 								</form>
 							</div>
 							<div class="modal-footer justify-content-between">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 								<button type="button" id="btnEliminar" class="btn btn-danger ml-auto" style="display:none;">Eliminar</button>
-								<button type="button"   class="btn btn-secondary" id="btnGuardar">Guardar informacion</button>
-
-                                <!-- donde tienes la funcionalidad del boton guardar ?? -->
+								<button type="button" class="btn btn-secondary" id="btnGuardar">Guardar informacion</button>
 							</div>
 						</div>
-                        <!-- /.modal-content --
+                        <!-- /.modal-content -->
                     </div>
                     <!-- /.modal-dialog -->
                 </div>
@@ -192,7 +159,7 @@
         })
 
         function Tabla() {
-            var tabla = $("#example1").DataTable({
+            var tabla = $("#planestudio").DataTable({
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
                 },
@@ -215,7 +182,7 @@
                                 extend: 'excel',
                                 text: '<i class="fa fa-file-excel"></i> Excel',
                                 className: 'btn btn-default',
-                                title: 'ListaPeriodos',
+                                title: 'ListapLanEstudio',
                                 exportOptions: {
                                     columns: ':visible'
                                 }
@@ -224,7 +191,7 @@
                                 extend: 'pdf',
                                 text: '<i class="fa fa-file-pdf"></i> PDF',
                                 className: 'btn btn-default',
-                                title: 'ListaPeriodos',
+                                title: 'ListapLanEstudio',
                                 exportOptions: {
                                     columns: ':visible'
                                 }
@@ -245,7 +212,7 @@
                 ],
                 "ajax": {
                     type: "POST",
-                    url: "mCDIPeriodo1/listar",
+                    url: "mCDIPlanEstudio/listar",
                     dataSrc: "",
                     data: "",
                 },
@@ -253,77 +220,45 @@
                         "data": "id"
                     },
                     {
-                        "data": "periodo"
-                    },
-                    {
-                        "data": "fecha_inicio"
-                    },
-                    {
-                        "data": "fecha_fin"
-                    }
+						"data": "clave"
+					},
+					{
+						"data": "nombre"
+					}
                 ]
             });
         }
         $(document).ready(function() {
-            var table = $('#example1').DataTable();
+            var table = $('#planestudio').DataTable();
 
-            $('#example1 tbody').on('click', ' tr td:nth-child(1)', function() {
+            $('#planestudio tbody').on('click', ' tr td:nth-child(1)', function() {
                 var rowIdx = table.row(this).index();
-                var id = table.cell(rowIdx, 0).data();
-                var periodo = table.cell(rowIdx, 1).data();
-                var fecha_inicio = table.cell(rowIdx, 2).data();
-                var fecha_fin = table.cell(rowIdx, 3).data();
-                lanzarModal("editar", id, periodo, fecha_inicio, fecha_fin);
+				var id = table.cell(rowIdx, 0).data();
+				var clave = table.cell(rowIdx, 1).data();
+                var nombre = table.cell(rowIdx, 2).data();
+				lanzarModal("editar", id, clave, nombre);
             });
         });
-        //aqiiiiiiiiiiiiiiiiiii
-        function ValidarFechas() {
-            var txt_fecha_inicio = document.getElementById("txt_fecha_inicio").value;
-            var txt_fecha_fin = document.getElementById("txt_fecha_fin").value;
-
-            if (Date.parse(txt_fecha_fin) < Date.parse(txt_fecha_inicio)) {
-                Swal.fire(
-                                    'Error',
-                                    'La fecha final no pude anterior a la fecha inicial',
-                                    'error'
-                                )
-                 return false; 
-            }
-               return true;
-        }
-
-        // Para validar ña funcion dentro del boton guardar
-
-
-        // es todo esto tttootot
         $("#btnGuardar").click(function() {
-            if (!ValidarFechas()) {
-        return; // Si la validación falla, detenemos la ejecución del evento de clic del botón.
-    }
-else{
             removerClass("#frmNuevo");
-            $("#periodo > div").html("");
-			$("#periodo > input").removeClass("is-invalid");
-			$("#fecha_inicio > div").html("");
-			$("#fecha_inicio > input").removeClass("is-invalid");
-			$("#fecha_fin > div").html("");
-			$("#fecha_fin input").removeClass("is-invalid");
-            $("#fechahora > div").html("");
-			$("#fechahora input").removeClass("is-invalid");
+            $("#clave > div").html("");
+			$("#clave > input").removeClass("is-invalid");
+			$("#nombre > div").html("");
+			$("#nombre > input").removeClass("is-invalid");
+			$("#fechahora > div").html("");
+			$("#fechahora > input").removeClass("is-invalid");
             $("#activo > div").html("");
 			$("#activo input").removeClass("is-invalid");
             $("#usuario > div").html("");
 			$("#usuario input").removeClass("is-invalid");
-
-
             $.ajax({
-                url: "mCDIPeriodo1/insertar",
+                url: "mCDIPlanEstudio/insertar",
                 type: "POST",
                 data: $("#frmNuevo").serialize(),
                 success: function(response) {
                     var resp = JSON.parse(response);
                     $("#modalNuevo").modal("toggle");
-                    $('#example1').DataTable().ajax.reload();
+                    $('#mCDIPlanEstudio').DataTable().ajax.reload();
                     if (resp.msg == "insertado") {
                         toastr.success('Registro agregado correctamente');
                     } else if (resp.msg == "editado") {
@@ -345,7 +280,6 @@ else{
                     }
                 }
             })
-        }
         });
         // function lanzarModal(origen, id) {
 		// 	if (origen == 'nuevo') {
@@ -384,20 +318,19 @@ else{
 		// 	}
 		// }
 
-        function lanzarModal(origen, id, periodo, fecha_inicio, fecha_fin) {
+        function lanzarModal(origen, id, clave, nombre) {
             if (origen == 'nuevo') {
                 $("#btnEliminar").css('display', 'none');
                 limpiar('#frmNuevo');
                 $("#modalNuevo").modal("show");
-                $("#titulo").html("Catalogo de Periodos | Nuevo Registro");
+                $("#titulo").html("Catalogo de Plan de estudios | Nuevo Registro");
             } else if (origen == 'editar') {
                 $("#btnEliminar").removeAttr('style');
                 $("#id").val(id);
-                $("#txt_periodo").val(periodo);
-                $("#txt_fecha_inicio").val(fecha_inicio);
-                $("#txt_fecha_fin").val(fecha_fin);
+                $("#txt_clave").val(clave);
+                $("#txt_nombre").val(nombre);
                 $("#modalNuevo").modal("show");
-                $("#titulo").html("Catalogo de Periodos | Editar Registro");
+                $("#titulo").html("Catalogo de Plan de estudios | Editar Registro");
             }
         }
         $("#btnEliminar").click(function() {
@@ -414,7 +347,7 @@ else{
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "mCDIPeriodo1/eliminar",
+                        url: "mCDIPlanEstudio/eliminar",
                         type: "POST",
                         data: {
                             id: id
@@ -422,7 +355,7 @@ else{
                         success: function(response) {
                             var resp = JSON.parse(response);
                             $("#modalNuevo").modal("toggle");
-                            $('#example1').DataTable().ajax.reload();
+                            $('#mCDIPlanEstudio').DataTable().ajax.reload();
                             if (resp.msg == "eliminado") {
                                 Swal.fire(
                                     'Eliminado',

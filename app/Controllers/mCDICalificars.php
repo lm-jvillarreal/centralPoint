@@ -25,6 +25,19 @@ class mCDICalificars extends BaseController{
         }
         echo json_encode($array);
     }
+    public function listarAlumnos(){
+        $detalle = new mCDICalificar();
+        $detalle=$detalle->listarAlumno();
+        $array=[];
+        foreach($detalle as $resultado){
+            array_push($array,[
+                "id"=>$resultado["id"],
+                "id_alumno"=>$resultado["id_alumno"]
+               
+            ]);
+        }
+        echo json_encode($array);
+    }
 
 
 }

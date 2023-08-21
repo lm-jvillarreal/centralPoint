@@ -6,7 +6,7 @@ use App\Libraries\Functions;
 use App\Models\mCDIPlanEstudios;
 use CodeIgniter\HTTP\Response;
 
-class planestudio extends BaseController{
+class mCDIPlanEstudio extends BaseController{
     public function index(){
     }
     public function listar(){
@@ -50,7 +50,7 @@ class planestudio extends BaseController{
 			'txt_clave' => [
 				'rules' => 'required',
 				'errors' => [
-					"required" => "Debes ingresar un clave"
+					"required" => "Debes ingresar una clave"
 				]
 			],
             'txt_nombre' => [
@@ -60,8 +60,8 @@ class planestudio extends BaseController{
 				]
             ],
 		])) {
-			$nombre = $this->validator->getError('txt_clave');
-            $clave = $this->validator->getError('txt_nombre');
+			$clave = $this->validator->getError('txt_clave');
+            $nombre = $this->validator->getError('txt_nombre');
 			$errores = [
 				'clave' => $clave,
                 'nombre'=>$nombre,
@@ -75,14 +75,14 @@ class planestudio extends BaseController{
 			$response->send();
 		} else {
 			$id=$this->request->getPost('id');
-			$nombre = $this->request->getPost('txt_clave');
-            $clave = $this->request->getPost('txt_nombre');
+			$clave = $this->request->getPost('txt_clave');
+            $nombre = $this->request->getPost('txt_nombre');
 			$planestudios = new mCDIPlanEstudios();
 			if($id==""){
 				$planestudios = $planestudios->insertarPlanEstudio($clave, $nombre);
 				echo json_encode(['msg' => 'insertado']);
 			}else if($id!=""){
-				$planestudios = $planestudios->editarPlanEstudio($id,$clave,$nombre);
+				$planestudios = $planestudios->editarPlanEstudio($id, $clave, $nombre);
 				echo json_encode(['msg' => 'editado']);
 			}
 		}

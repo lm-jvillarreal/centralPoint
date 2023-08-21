@@ -49,8 +49,9 @@
                                     <table id="departamentos" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th class="clickable-cell" data-url="http://localhost:8080/CDI/centralPoint/public/35" width='15%'>#</th>
-                                                <th class="clickable-cell" data-url="http://localhost:8080/CDI/centralPoint/public/35" width='85%'>#Nivel</th>
+                                                <th  width='15%'>#</th>
+                                                <th  width='85%'>#Nivel</th>
+                                                <th  ></th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -125,10 +126,19 @@
                     },
                     {
                         "data": "nivel"
+                    },
+                    {
+                        "render": function (data, type, row, meta) {
+                            return '<button class="btn btn-sm btn-primary" onclick="redireccionar(' + row.id + ', \'' + row.detalles + '\')">Despliegue de Listado </button>';
+                        }
                     }
                 ]
             });
         }
+        function redireccionar(id, detalles) {
+    // Aquí pasamos los detalles a la página de redireccionamiento utilizando parámetros GET
+    window.location.href = "http://localhost:8080/CDI/centralPoint/public/35?id=" + id + "&detalles=" + encodeURIComponent(detalles);
+}
     </script>
 </body>
 
