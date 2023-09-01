@@ -21,7 +21,7 @@ class mCDICalificars extends BaseController{
         foreach ($grupos as $resultado) {
             $array[] = [
                 "id" => $resultado["id"],
-                "nombre" => $resultado["nombre"],
+                "id_evaluacion" => $resultado["id_evaluacion"],
                 "id_alumno" => $resultado["id_alumno"],
                 "calificacion" => $resultado["calificacion"]
             ];
@@ -31,6 +31,16 @@ class mCDICalificars extends BaseController{
         echo json_encode($array);
     }
     
+    public function select1(){
+        $grupos= new mCDICalificar();
+        $searchTerm=$this->request->getPost("searchTerm");
+        $grupos=$grupos->listarSelect1($searchTerm);
+        $data=[];
+        foreach($grupos as $resultado){
+            $data[]=["id"=>$resultado['id'], "text"=>$resultado['nombre']];
+        }
+        echo json_encode($data);
+    }
     
 
 

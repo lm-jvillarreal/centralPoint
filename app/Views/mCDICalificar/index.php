@@ -52,8 +52,8 @@
                                                 <th width='5%'>#</th>
                                                 <th width='15%'>Evaluacion</th>
                                                 <th width='15%'>Alumno</th>
-												<th width='15%'>Calificacion</th>
-                                              
+                                                <th width='15%'>Calificacion</th>
+
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -78,41 +78,32 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                            <form action="" method="POST" id="frmNuevo">
+                                <form action="" method="POST" id="frmNuevo">
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group" id="Plan">
-                                                <label for="id_Plan" class="form-label">*Plan:</label>
+                                        <div class="col-md-6">
+                                            <div class="form-group" id="id_evaluacion">
+                                                <label for="id_evaluacion" class="form-label">*Evaluacion:</label>
                                                 <input type="hidden" name="id" id="id">
                                                 <!-- type="text"  iva abajo antes del name -->
-                                                <select name="txt_id_Plan" id="txt_id_Plan" class="form-control"></select>
-                                               
+                                                <select name="txt_id_evaluacion" id="txt_id_evaluacion" class="form-control"></select>
+
                                                 <div class="invalid-feedback"></div>
                                             </div>
                                         </div>
-                                        <div class="col-md-8">
-                                            <div class="form-group" id="periodo">
-                                                <label for="id_periodo" class="form-label">*Periodo</label>
-                                                <!-- type="text" va abajo antes del name -->
-                                                <select name="txt_id_periodo" id="txt_id_periodo" class="form-control"></select>
-                                                
-                                                <div class="invalid-feedback"></div>
-                                            </div>
+                                        <div class="card-body">
+                                            <table id="example2" class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th width='5%'>Alumno</th>
+                                                        <th width='15%'>Calificacion</th>
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
                                         </div>
-										<div class="col-md-8">
-                                            <div class="form-group" id="nivel">
-                                                <label for="nivel" class="form-label">*Nivel</label>
-                                                <input type="text" name="txt_nivel" id="txt_nivel" class="form-control">
-                                                <div class="invalid-feedback"></div>
-                                            </div>
-                                        </div>
-										<div class="col-md-8">
-                                            <div class="form-group" id="docente">
-                                                <label for="id_docente" class="form-label">*Docente</label>
-                                                <select type="text" name="txt_id_docente" id="txt_id_docente" class="form-control"></select>
-                                                <div class="invalid-feedback"></div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </form>
                             </div>
@@ -146,94 +137,49 @@
     <script>
         $(document).ready(function() {
             Tabla();
+            Tabla2();
         });
+
         function removerClass() {
-			$("#Plan > div").html("");
-			$("#Plan > select").removeClass("is-invalid");
-			$("#periodo > div").html("");
-			$("#periodo > select").removeClass("is-invalid");
-			$("#nivel > div").html("");
-			$("#nivel > input").removeClass("is-invalid");
-			$("#docente > div").html("");
-			$("#docente > select").removeClass("is-invalid");
-			
-		}
+            $("#Plan > div").html("");
+            $("#Plan > select").removeClass("is-invalid");
+            $("#periodo > div").html("");
+            $("#periodo > select").removeClass("is-invalid");
+            $("#nivel > div").html("");
+            $("#nivel > input").removeClass("is-invalid");
+            $("#docente > div").html("");
+            $("#docente > select").removeClass("is-invalid");
+
+        }
         $('#modalNuevo').on('hidden.bs.modal', function() {
-			$(this).find('frmNuevo').trigger('reset');
-			removerClass();
-		});
-        $('#txt_id_Plan').select2({
-			theme: 'bootstrap4',
-			width: '100%',
-			dropdownParent: $("#modalNuevo"),
-			placeholder: 'Seleccione una opcion',
-			lenguage: 'es',
-			ajax: {
-				url: "mCDIGrupos/select1",
-				type: "post",
-				dataType: 'json',
-				delay: 250,
-				data: function(params) {
-					return {
-						searchTerm: params.term // search term
-					};
-				},
-				processResults: function(response) {
-					return {
-						results: response
-					};
-				},
-				cache: true
-			}
-		});
-        $('#txt_id_periodo').select2({
-			theme: 'bootstrap4',
-			width: '100%',
-			dropdownParent: $("#modalNuevo"),
-			placeholder: 'Seleccione una opcion',
-			lenguage: 'es',
-			ajax: {
-				url: "mCDIGrupos/select2",
-				type: "post",
-				dataType: 'json',
-				delay: 250,
-				data: function(params) {
-					return {
-						searchTerm: params.term // search term
-					};
-				},
-				processResults: function(response) {
-					return {
-						results: response
-					};
-				},
-				cache: true
-			}
-		});
-        $('#txt_id_docente').select2({
-			theme: 'bootstrap4',
-			width: '100%',
-			dropdownParent: $("#modalNuevo"),
-			placeholder: 'Seleccione una opcion',
-			lenguage: 'es',
-			ajax: {
-				url: "mCDIGrupos/select3",
-				type: "post",
-				dataType: 'json',
-				delay: 250,
-				data: function(params) {
-					return {
-						searchTerm: params.term // search term
-					};
-				},
-				processResults: function(response) {
-					return {
-						results: response
-					};
-				},
-				cache: true
-			}
-		});
+            $(this).find('frmNuevo').trigger('reset');
+            removerClass();
+        });
+        $('#txt_id_evaluacion').select2({
+            theme: 'bootstrap4',
+            width: '100%',
+            dropdownParent: $("#modalNuevo"),
+            placeholder: 'Seleccione una opcion',
+            lenguage: 'es',
+            ajax: {
+                url: "mCDICalificars/select1",
+                type: "post",
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        searchTerm: params.term // search term
+                    };
+                },
+                processResults: function(response) {
+                    return {
+                        results: response
+                    };
+                },
+                cache: true
+            }
+        });
+
         function removerClass(formulario) {
             $(formulario + ' .form-group').each(function(index, obj) {
                 var id_group = $(formulario + " .form-group")[index].id;
@@ -327,7 +273,7 @@
                         "data": "id"
                     },
                     {
-                        "data": "nombre"
+                        "data": "id_evaluacion"
                     },
                     {
                         "data": "id_alumno"
@@ -335,7 +281,29 @@
                     {
                         "data": "calificacion"
                     }
-                   
+
+                ]
+            });
+        }
+
+        function Tabla2() {
+            var tabla = $("#example2").DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+                },
+                "ajax": {
+                    type: "POST",
+                    url: "mCDICalificars/listar",
+                    dataSrc: "",
+                    data: "",
+                },
+                "columns": [{
+                        "data": "id_alumno"
+                    },
+                    {
+                        "input": "calificacion"
+                    }
+
                 ]
             });
         }
@@ -347,7 +315,7 @@
                 var id = table.cell(rowIdx, 0).data();
                 var Plan = table.cell(rowIdx, 1).data();
                 var Periodo = table.cell(rowIdx, 2).data();
-				var Nivel = table.cell(rowIdx, 3).data();
+                var Nivel = table.cell(rowIdx, 3).data();
                 var Docente = table.cell(rowIdx, 4).data();
                 lanzarModal("editar", id, Plan, Periodo, Nivel, Docente);
             });
@@ -371,12 +339,12 @@
                 statusCode: {
                     400: function(xhr) {
                         var resp = JSON.parse(xhr.responseText);
-						$.each(resp, function(ind, elem) {
-							if (elem != "") {
-								$("#" + ind + " > div").html(elem);
-								$("#" + ind + " > .form-control").addClass("is-invalid");
-							}
-						});
+                        $.each(resp, function(ind, elem) {
+                            if (elem != "") {
+                                $("#" + ind + " > div").html(elem);
+                                $("#" + ind + " > .form-control").addClass("is-invalid");
+                            }
+                        });
                     },
                     401: function(xhr) {
 
@@ -396,7 +364,7 @@
                 $("#id").val(id);
                 $("#txt_id_Plan").val(plan);
                 $("#txt_id_periodo").val(periodo);
-				$("#txt_nivel").val(nivel);
+                $("#txt_nivel").val(nivel);
                 $("#txt_id_docente").val(docente);
                 $("#modalNuevo").modal("show");
                 $("#titulo").html("Categorías de módulos | Editar Registro");
