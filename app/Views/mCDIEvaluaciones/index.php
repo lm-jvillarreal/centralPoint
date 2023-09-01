@@ -2,142 +2,159 @@
 <html lang="es">
 
 <head>
-	<?= $head; ?>
+    <?= $head; ?>
 </head>
 
 <body class="hold-transition sidebar-mini">
-	<div class="wrapper">
-		<!-- Navbar -->
-		<?= $header; ?>
-		<!-- /.navbar -->
+    <div class="wrapper">
+        <!-- Navbar -->
+        <?= $header; ?>
+        <!-- /.navbar -->
 
-		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
-			<?= $menuV; ?>
-		</aside>
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <?= $menuV; ?>
+        </aside>
 
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<section class="content-header">
-				<div class="container-fluid">
-					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1>Administración de Evaluaciones</h1>
-						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Administración y Seguridad</a></li>
-								<li class="breadcrumb-item active">Evaluaciones</li>
-							</ol>
-						</div>
-					</div>
-				</div><!-- /.container-fluid -->
-			</section>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Administracion de Evaluaciones</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Grupos</a></li>
+                                <li class="breadcrumb-item active">Administracion de Evaluaciones</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
 
-			<!-- Main content -->
-			<section class="content">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-12">
-							<div class="card">
-								<div class="card-header">
-									<h3 class="card-title">Catálogo de Evaluaciones</h3>
-								</div>
-								<!-- /.card-header -->
-								<div class="card-body">
-									<table id="departamentos" class="table table-bordered table-striped">
-										<thead>
-											<tr>
-												<th width='6%'>#</th>
-												<th width='40%'>Nombre</th>
-												<th width='40%'>Tipo Evaluacion</th>
-												<th width='14%'></th>
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Administración de Evaluaciones</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th width='5%'>#</th>
+                                                <th width='45%'>Nombre</th>
+                                                <th width='45%'>Nombre de Evaluacion</th>
+                                                <th width='5'></th>
 												
-											</tr>
-										</thead>
-										<tbody></tbody>
-									</table>
-								</div>
-								<!-- /.card-body -->
-							</div>
-							<!-- /.card -->
-						</div>
-						<!-- /.col -->
-					</div>
-					<!-- /.row -->
-				</div>
-				<!-- /.container-fluid -->
-				<div class="modal fade" id="modalNuevo">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h4 class="modal-title" id="titulo"></h4>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<form action="" method="POST" id="frmNuevo">
-									<div class="row">
-										<div class="col-md-4">
-											<div class="form-group" id="id_grupo">
-												<label for="id_grupo" class="form-label">*Grupo:</label>
-												<input type="hidden" name="id" id="id">
-												<select type="text" name="txt_Grupo" id="txt_Grupo" class="form-control"></select>
-												<div class="invalid-feedback"></div>
-											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="form-group" id="nombre">
-												<label for="nombre" class="form-label">*Nombre:</label>
-												<input type="text" name="txt_Nombre" id="txt_Nombre" class="form-control">
-												<div class="invalid-feedback"></div>
-											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="form-group" id="tipo_evaluacion">
-												<label for="tipo_evaluacion" class="form-label">*Tipo Evaluacion:</label>
-												<select type="text" name="txt_tipo" id="txt_tipo" class="form-control"></select>
-												<div class="invalid-feedback"></div>
-											</div>
-										</div>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+                <div class="modal fade" id="modalNuevo">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="titulo"></h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            <form action="" method="POST" id="frmNuevo">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group" id="id_grupo">
+                                                <label for="id_grupo" class="form-label">*Grupo:</label>
+                                                <input type="hidden" name="id" id="id">
+                                                <!-- type="text"  iva abajo antes del name -->
+                                                <select name="txt_Grupo" id="txt_Grupo" class="form-control"></select>
+                                               
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group" id="nombre">
+                                                <label for="nombre" class="form-label">*Nombre</label>
+                                                <!-- type="text" va abajo antes del name -->
+                                                <input name="txt_Nombre" id="txt_Nombre" class="form-control">
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
+										<div class="col-md-8">
+                                            <div class="form-group" id="tipo_evaluacion">
+                                                <label for="tipo_evaluacion" class="form-label">*Tipo de Evaluacion</label>
+                                                <select type="text" name="txt_tipo" id="txt_tipo" class="form-control"></select>
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+                                        </div>
 										
-									
-								</form>
-							</div>
-							<div class="modal-footer justify-content-between">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-								<button type="button" id="btnEliminar" class="btn btn-danger ml-auto" style="display:none;">Eliminar</button>
-								<button type="button" class="btn btn-secondary" id="btnGuardar">Guardar Evaluacion</button>
-							</div>
-						</div>
-						<!-- /.modal-content -->
-					</div>
-					<!-- /.modal-dialog -->
-				</div>
-				<!-- /.modal -->
-			</section>
-			<!-- /.content -->
-		</div>
-		<!-- /.content-wrapper -->
-		<?= $footer2; ?>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                <button type="button" id="btnEliminar" class="btn btn-danger ml-auto" style="display:none;">Eliminar</button>
+                                <button type="button" class="btn btn-secondary" id="btnGuardar">Guardar Grupo</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <?= $footer2; ?>
 
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Control sidebar content goes here -->
-		</aside>
-		<!-- /.control-sidebar -->
-	</div>
-	<!-- ./wrapper -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
 
-	<?= $footer; ?>
-	<!-- Page specific script -->
-	<script>
-		$(document).ready(function() {
-			Tabla();
+    <?= $footer; ?>
+    <!-- Page specific script -->
+    <script>
+        $(document).ready(function() {
+            Tabla();
+        });
+        function removerClass() {
+			$("#id_grupo > div").html("");
+			$("#id_grupo > select").removeClass("is-invalid");
+			$("#nombre > div").html("");
+			$("#nombre > input").removeClass("is-invalid");
+			$("#tipo_evaluacion > div").html("");
+			$("#tipo_evaluacion > select").removeClass("is-invalid");
+			
+			
+		}
+        $('#modalNuevo').on('hidden.bs.modal', function() {
+			$(this).find('frmNuevo').trigger('reset');
+			removerClass();
 		});
-		$('#txt_Grupo').select2({
+        $('#txt_Grupo').select2({
 			theme: 'bootstrap4',
 			width: '100%',
 			dropdownParent: $("#modalNuevo"),
@@ -185,195 +202,216 @@
 				cache: true
 			}
 		});
-		
-		$('#modalNuevo').on('hidden.bs.modal', function() {
-			$(this).find('frmNuevo').trigger('reset');
-			$("#Grupo > div").html("");
-			$("#Grupo > input").removeClass("is-invalid");
-			$("#Nombre > div").html("");
-			$("#Nombre > input").removeClass("is-invalid");
-			$("#TipoEvaluacion > div").html("");
-			$("#TipoEvaluacion > input").removeClass("is-invalid");
-			
-		})
+       
+        function removerClass(formulario) {
+            $(formulario + ' .form-group').each(function(index, obj) {
+                var id_group = $(formulario + " .form-group")[index].id;
+                var tipo_elemento = $(formulario + " .form-control")[index].tagName.toLowerCase();
+                $("#" + id_group + " >  div").html("");
+                $("#" + id_group + " > " + tipo_elemento).removeClass("is-invalid");
+            });
+        }
 
-		function Tabla() {
-    var tabla = $("#departamentos").DataTable({
-        "language": {
-            "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
-        },
-        "lengthChange": false,
-        "autoWidth": false,
-        "dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>rt<'row'<'col-sm-6'i><'col-sm-6'p>>",
-        buttons: [
-            {
-                text: '<i class="fa fa-plus-square"></i> Nuevo',
-                className: 'red',
-                action: function() {
-                    lanzarModal("nuevo", null, null, null, null);
-                },
-                counter: 1
-            },
-            // ... (otros botones)
-        ],
-        "ajax": {
-            type: "POST",
-            url: "mCDIEvaluaciones/listar",
-            dataSrc: "",
-            data: "",
-        },
-        "columns": [
-            {
-                "type": "html-num",
-                "data": "id"
-            },
-            {
-                "data": "nombre"
-            },
-            {
-                "data": "tipo_evaluacion"
-            },
-            {
-				"render": function (data, type, row, meta) {
-                    return '<button class="btn btn-sm btn-primary" onclick="redireccionar(' + row.id + ', \'' + row.detalles + '\')">Despliegue de Listado </button>';
+        function limpiar(formulario) {
+            $(formulario + ' .form-group').each(function(index, obj) {
+                var id_group = $(formulario + " .form-group")[index].id;
+                var tipo_elemento = $(formulario + " .form-control")[index].tagName.toLowerCase();
+                $("#" + id_group + " >  div").html("");
+                $("#" + id_group + " > " + tipo_elemento).removeClass("is-invalid");
+                if (tipo_elemento == "input") {
+                    $("#" + id_group + " > " + tipo_elemento).val('');
+                } else if (tipo_elemento == "select") {
+                    $("#" + id_group + " > " + tipo_elemento).select2("trigger", "select", {
+                        data: {
+                            id: '',
+                            text: ''
+                        }
+                    });
                 }
-            }
-        ]
-    });
-}
+            });
+        }
+        $('#modalNuevo').on('hidden.bs.modal', function() {
+            limpiar('#frmNuevo');
+        })
 
-
-function redireccionar(id, detalles) {
+        function Tabla() {
+            var tabla = $("#example1").DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+                },
+                "lengthChange": false,
+                "autoWidth": false,
+                "dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>rt<'row'<'col-sm-6'i><'col-sm-6'p>>",
+                buttons: [{
+                        text: '<i class="fa fa-plus-square"></i> Nuevo',
+                        className: 'red',
+                        action: function() {
+                            lanzarModal("nuevo", null, null, null);
+                        },
+                        counter: 1
+                    },
+                    {
+                        extend: 'collection',
+                        text: '<i class="fa fa-file-export"></i> Exportar',
+                        className: "btnArrow",
+                        buttons: [{
+                                extend: 'excel',
+                                text: '<i class="fa fa-file-excel"></i> Excel',
+                                className: 'btn btn-default',
+                                title: 'CategoriasModulos',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+                            },
+                            {
+                                extend: 'pdf',
+                                text: '<i class="fa fa-file-pdf"></i> PDF',
+                                className: 'btn btn-default',
+                                title: 'CategoriasModulos',
+                                exportOptions: {
+                                    columns: ':visible'
+                                }
+                            },
+                        ],
+                    },
+                    {
+                        extend: 'copy',
+                        text: '<i class="fa fa-copy"></i> Copiar registros',
+                        className: 'btn btn-primary',
+                        copyTitle: 'Ajouté au presse-papiers',
+                        copyKeys: 'Appuyez sur <i>ctrl</i> ou <i>\u2318</i> + <i>C</i> pour copier les données du tableau à votre presse-papiers. <br><br>Pour annuler, cliquez sur ce message ou appuyez sur Echap.',
+                        copySuccess: {
+                            _: '%d lignes copiées',
+                            1: '1 ligne copiée'
+                        }
+                    },
+                ],
+                "ajax": {
+                    type: "POST",
+                    url: "mCDIEvaluaciones/listar",
+                    dataSrc: "",
+                    data: "",
+                },
+                "columns": [{
+                        "data": "id"
+                    },
+                    {
+                        "data": "nombre"
+                    },
+                    {
+                        "data": "tipo_evaluacion"
+                    
+                    },
+                    {
+                        "render": function (data, type, row, meta) {
+                    return '<button class="btn btn-sm btn-primary" onclick="redireccionar(' + row.id + ', \'' + row.detalles + '\')">Calificar</button>';
+                            }
+                    }  
+                ]
+            });
+            
+        }
+        function redireccionar(id, detalles) {
     // Aquí pasamos los detalles a la página de redireccionamiento utilizando parámetros GET
     window.location.href = "http://localhost:8080/CDI/centralPoint/public/29?id=" + id + "&detalles=" + encodeURIComponent(detalles);
 }
 
+        $(document).ready(function() {
+            var table = $('#example1').DataTable();
 
-		
-		$(document).ready(function() {
-			var table = $('#departamentos').DataTable();
-			$('#departamentos tbody').on('click', ' tr td:nth-child(1)', function() {
-				var rowIdx = table.row(this).index();
-				var id = table.cell(rowIdx, 0).data();
-				lanzarModal("editar", id);
-			});
-		});
-		$("#btnGuardar").click(function() {
-			$("#Grupo > div").html("");
-			$("#Grupo > input").removeClass("is-invalid");
-			$("#Nombre > div").html("");
-			$("#Nombre > input").removeClass("is-invalid");
-			$("#TipoEvaluacion > div").html("");
-			$("#TipoEvaluacion > input").removeClass("is-invalid");
-		
-			$.ajax({
-				url: "mCDIEvaluaciones/insertar",
-				type: "POST",
-				data: $("#frmNuevo").serialize(),
-				success: function(response) {
-					var resp = JSON.parse(response);
-					$("#modalNuevo").modal("toggle");
-					$('#aspirantes').DataTable().ajax.reload();
-					if (resp.msg == "insertado") {
-						toastr.success('Registro agregado correctamente');
-					} else if (resp.msg == "editado") {
-						toastr.success('Registro actualizado correctamente');
-					}
-				},
-				statusCode: {
-					400: function(xhr) {
-						var resp = JSON.parse(xhr.responseText);
-						if (resp.Grupo != "") {
-							$("#Grupo > div").html(resp.Grupo);
-							$("#Grupo > input").addClass("is-invalid");
-						}
-						if (resp.Nombre != "") {
-							$("#Nombre > div").html(resp.Nombre);
-							$("#Nombre > input").addClass("is-invalid");
-						}
-						if (resp.TipoEvaluacion != "") {
-							$("#TipoEvaluacion > div").html(resp.TipoEvaluacion);
-							$("#TipoEvaluacion > input").addClass("is-invalid");
-						}
-						
-					},
-					401: function(xhr) {
-
-					}
-				}
-			})
-		});
-
-		function lanzarModal(origen, id) {
-			if (origen == 'nuevo') {
-				$("#btnEliminar").css('display', 'none');
-				$("#id").val("");
-				$("#txt_Grupo").val("");
-				$("#txt_Nombre").val("");
-				$("#txt_tipo").val("");
-				
-				$("#modalNuevo").modal("show");
-				$("#titulo").html("Catálogo de Evaluaciones | Nuevo Registro");
-				
-				
-									
-			} else if (origen == 'editar') {
-				$.ajax({
-					url: "mCDIEvaluaciones/campos",
-					type: "POST",
-					data: {
-						id: id
-					},
-					success: function(response) {
-						var resp = JSON.parse(response);
-						$("#btnEliminar").removeAttr('style');
-						$("#id").val(resp.id);
-						$("#txt_Grupo").val(resp.Grupo);
-						$("#txt_Nombre").val(resp.Nombre);
-						$("#txt_tipo").val(resp.TipoEvaluacion);
-						
-						$("#titulo").html("Administración de departamentos | Editar Registro");
-						$("#modalNuevo").modal("show");
-					}
-				})
-			}
-		}
-		$("#btnEliminar").click(function() {
-			var id = $("#id").val();
-			Swal.fire({
-				title: '¿Estás seguro?',
-				text: "La eliminación de un registro es irreversible",
-				icon: 'warning',
-				showCancelButton: true,
-				confirmButtonColor: '#3085d6',
-				cancelButtonColor: '#d33',
-				cancelButtonText: 'Cancelar',
-				confirmButtonText: 'Confirmar eliminación'
-			}).then((result) => {
-				if (result.isConfirmed) {
-					$.ajax({
-						url: "mCDIEvaluaciones/eliminar",
-						type: "POST",
-						data: {
-							id: id
-						},
-						success: function(response) {
-							var resp = JSON.parse(response);
-							$("#modalNuevo").modal("toggle");
-							$('#sedes').DataTable().ajax.reload();
-							if (resp.msg == "eliminado") {
-								Swal.fire(
-									'Eliminado',
-									'El registro ha sido eliminado',
-									'success'
-								)
+            $('#example1 tbody').on('click', ' tr td:nth-child(1)', function() {
+                var rowIdx = table.row(this).index();
+                var id = table.cell(rowIdx, 0).data();
+                var Nombre = table.cell(rowIdx, 1).data();
+                var TipoEvaluacion = table.cell(rowIdx, 2).data();
+                lanzarModal("editar", id, Nombre, TipoEvaluacion);
+            });
+        });
+        $("#btnGuardar").click(function() {
+            removerClass("#frmNuevo");
+            $.ajax({
+                url: "mCDIEvaluaciones/insertar",
+                type: "POST",
+                data: $("#frmNuevo").serialize(),
+                success: function(response) {
+                    var resp = JSON.parse(response);
+                    $("#modalNuevo").modal("toggle");
+                    $('#example1').DataTable().ajax.reload();
+                    if (resp.msg == "insertado") {
+                        toastr.success('Registro agregado correctamente');
+                    } else if (resp.msg == "editado") {
+                        toastr.success('Registro actualizado correctamente');
+                    }
+                },
+                statusCode: {
+                    400: function(xhr) {
+                        var resp = JSON.parse(xhr.responseText);
+						$.each(resp, function(ind, elem) {
+							if (elem != "") {
+								$("#" + ind + " > div").html(elem);
+								$("#" + ind + " > .form-control").addClass("is-invalid");
 							}
-						}
-					})
-				}
-			})
-		})
-	</script>
+						});
+                    },
+                    401: function(xhr) {
+
+                    }
+                }
+            })
+        });
+
+        function lanzarModal(origen, id, Grupo, Nombre, TipoEvaluacion) {
+            if (origen == 'nuevo') {
+                $("#btnEliminar").css('display', 'none');
+                limpiar('#frmNuevo');
+                $("#modalNuevo").modal("show");
+                $("#titulo").html("Categorías de módulos | Nuevo Registro");
+            } else if (origen == 'editar') {
+                $("#btnEliminar").removeAttr('style');
+                $("#id").val(id);
+                $("#txt_Grupo").val(Grupo);
+                $("#txt_Nombre").val(Nombre);
+				$("#txt_tipo").val(TipoEvaluacion);
+                $("#modalNuevo").modal("show");
+                $("#titulo").html("Categorías de módulos | Editar Registro");
+            }
+        }
+        $("#btnEliminar").click(function() {
+            var id = $("#id").val();
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "La eliminación de un registro es irreversible",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Confirmar eliminación'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "mCDIEvaluaciones/eliminar",
+                        type: "POST",
+                        data: {
+                            id: id
+                        },
+                        success: function(response) {
+                            var resp = JSON.parse(response);
+                            $("#modalNuevo").modal("toggle");
+                            $('#example1').DataTable().ajax.reload();
+                            if (resp.msg == "eliminado") {
+                                Swal.fire(
+                                    'Eliminado',
+                                    'El registro ha sido eliminado',
+                                    'success'
+                                )
+                            }
+                        }
+                    })
+                }
+            })
+        })
+    </script>
 </body>
 
 </html>

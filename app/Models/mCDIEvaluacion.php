@@ -58,10 +58,10 @@ class mCDIEvaluacion extends Model{
     }
 
 
-    public function insertarGrupo($Grupo, $Nombre, $TipoEvaluacion){
+    public function insertarGrupo($id, $Nombre, $TipoEvaluacion){
         $grupos=$this->db->table("mCDIEvaluaciones");
         $datos=[
-            "id_grupo"=>$Grupo,
+            "id_grupo"=>$id,
             "nombre"=>$Nombre,
             "tipo_evaluacion"=>$TipoEvaluacion,
             "fechahora"=>date("Y-m-d H:i:s"),
@@ -70,9 +70,9 @@ class mCDIEvaluacion extends Model{
         ];
         $grupos->insert($datos);
     }
-    public function editarGrupo($id_eva, $Grupo, $Nombre, $TipoEvaluacion){
+    public function editarGrupo($id_eva, $id, $Nombre, $TipoEvaluacion){
         $grupos=$this->db->table("mCDIEvaluaciones");
-        $grupos->set("id_grupo",$Grupo);
+        $grupos->set("id_grupo",$id);
         $grupos->set("nombre",$Nombre);
         $grupos->set("tipo_evaluacion",$TipoEvaluacion);
         $grupos->set("fechahora",date("Y-m-d H:i:s"));

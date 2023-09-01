@@ -14,30 +14,24 @@ class mCDICalificars extends BaseController{
 
     }
     public function listar(){
-        $detalle = new mCDICalificar();
-        $detalle=$detalle->listarEvaluacion();
-        $array=[];
-        foreach($detalle as $resultado){
-            array_push($array,[
-                "id"=>$resultado["id"],
-                "Nombre"=>$resultado["Nombre"]
-            ]);
+        $gruposModel = new mCDICalificar();
+        $grupos = $gruposModel->listardetalle();
+    
+        $array = [];
+        foreach ($grupos as $resultado) {
+            $array[] = [
+                "id" => $resultado["id"],
+                "nombre" => $resultado["nombre"],
+                "id_alumno" => $resultado["id_alumno"],
+                "calificacion" => $resultado["calificacion"]
+            ];
         }
+    
+        header('Content-Type: application/json');
         echo json_encode($array);
     }
-    public function listarAlumnos(){
-        $detalle = new mCDICalificar();
-        $detalle=$detalle->listarAlumno();
-        $array=[];
-        foreach($detalle as $resultado){
-            array_push($array,[
-                "id"=>$resultado["id"],
-                "id_alumno"=>$resultado["id_alumno"]
-               
-            ]);
-        }
-        echo json_encode($array);
-    }
+    
+    
 
 
 }
