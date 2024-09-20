@@ -18,11 +18,11 @@ class modulo extends BaseController
 			array_push($array, [
 				"id" => $resultado['ID'],
 				"nombre" => $resultado['NOMBRE'],
-                "ruta" => $resultado['RUTA'],
+        "ruta" => $resultado['RUTA'],
 				"descripcion" => $resultado['DESCRIPCION'],
-                "categoria" => $resultado['CATEGORIA'],
-                "icono" => $resultado['ICONO'],
-                "tema" => $resultado['TEMA'],
+        "categoria" => $resultado['CATEGORIA'],
+        "icono" => $resultado['ICONO'],
+        "tema" => $resultado['TEMA'],
 				"opciones" => ""
 			]);
 		}

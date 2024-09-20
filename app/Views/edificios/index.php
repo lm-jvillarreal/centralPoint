@@ -143,7 +143,8 @@
 				"lengthChange": false,
 				"autoWidth": false,
 				"dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>rt<'row'<'col-sm-6'i><'col-sm-6'p>>",
-				buttons: [{
+				buttons: [
+					{
 						text: '<i class="fa fa-plus-square"></i> Nuevo',
 						className: 'red',
 						action: function() {
