@@ -127,6 +127,7 @@
     $(document).ready(function() {
 			Tabla();
 		});
+		
     function removerClass(formulario) {
 			$(formulario + ' .form-group').each(function(index, obj) {
 				var id_group = $(formulario + " .form-group")[index].id;
@@ -226,6 +227,17 @@
 				]
 			});
 		}
+		$(document).ready(function() {
+			var table = $('#example1').DataTable();
+
+			$('#example1 tbody').on('click', ' tr td:nth-child(1)', function() {
+				var rowIdx = table.row(this).index();
+				var id = table.cell(rowIdx, 0).data();
+				var cveDepto = table.cell(rowIdx, 1).data();
+				var descripcionDepto = table.cell(rowIdx, 2).data();
+				lanzarModal("editar", id, cveDepto, descripcionDepto);
+			});
+		});
     $("#btnGuardar").click(function() {
 			removerClass("#frmNuevo");
 			$.ajax({
@@ -273,6 +285,41 @@
 				$("#titulo").html("Catálogo de departamentos | Editar Registro");
 			}
 		}
+		$("#btnEliminar").click(function() {
+			var id = $("#id").val();
+			Swal.fire({
+				title: '¿Estás seguro?',
+				text: "La eliminación de un registro es irreversible",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				cancelButtonText: 'Cancelar',
+				confirmButtonText: 'Confirmar eliminación'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					$.ajax({
+						url: "comDepto/eliminar",
+						type: "POST",
+						data: {
+							id: id
+						},
+						success: function(response) {
+							var resp = JSON.parse(response);
+							$("#modalNuevo").modal("toggle");
+							$('#example1').DataTable().ajax.reload();
+							if (resp.msg == "eliminado") {
+								Swal.fire(
+									'Eliminado',
+									'El registro ha sido eliminado',
+									'success'
+								)
+							}
+						}
+					})
+				}
+			})
+		})
 
    </script>
 </body>

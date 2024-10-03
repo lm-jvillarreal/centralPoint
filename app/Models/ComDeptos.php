@@ -45,7 +45,7 @@ class ComDeptos extends Model{
         $categorias->update();
     }
 
-    public function eliminarCategoria($id){
+    public function eliminarDepartamento($id){
         $categorias=$this->db->table("COM_DEPTOS");
         $categorias->set("ACTIVO",0);
         $categorias->where("ID",$id);

@@ -62,5 +62,11 @@ use App\Models\ComDeptos;
 				}
 			}
     }
+		public function eliminar(){
+			$departamento=new ComDeptos();
+			$id_departamento=$this->request->getPost('id');
+			$departamento=$departamento->eliminarDepartamento($id_departamento);
+			echo json_encode(['msg'=>'eliminado']);
+	}
  }
 ?>
